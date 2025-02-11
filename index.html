@@ -11,80 +11,303 @@
         <div class="logo">
             <img src="logo.svg" alt="Логотип">
         </div>
-        <nav class="nav">
-            <a href="#">Главная</a>
-            <a href="#">О нас</a>
-            <a href="#">Контакты</a>
-        </nav>
-        <div class="burger" onclick="toggleMenu()">
-            <div></div>
-            <div></div>
-            <div></div>
+        <div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#">Главная</a></li>
+                    <li><a href="#">О нас</a></li>
+                    <li><a href="#">Корзина</a></li>
+                    <li><a href="#">Контакты</a></li>
+                </ul>
+            </nav>
         </div>
-        <div class="mobile-nav">
-            <a href="#">Главная</a>
-            <a href="#">О нас</a>
-            <a href="#">Контакты</a>
-        </div>
+        <div class="burger-menu" onclick="toggleMenu()">☰</div>
     </header>
 
     <div class="container">
-        <div class="categories">
-            <div onclick="toggleCategory(1)">Категория 1</div>
-            <div onclick="toggleCategory(2)">Категория 2</div>
-            <div onclick="toggleCategory(3)">Категория 3</div>
-            <div onclick="toggleCategory(4)">Категория 4</div>
-            <div onclick="toggleCategory(5)">Категория 5</div>
-        </div>
-        <div class="content">
-            <div id="category1" class="category-block">
-                <div class="card">Карта 1.1</div>
-                <div class="card">Карта 1.2</div>
-                <div class="card">Карта 1.3</div>
-            </div>
-            <div id="category2" class="category-block">
-                <div class="card">Карта 2.1</div>
-                <div class="card">Карта 2.2</div>
-                <div class="card">Карта 2.3</div>
-            </div>
-            <div id="category3" class="category-block">
-                <div class="card">Карта 3.1</div>
-                <div class="card">Карта 3.2</div>
-                <div class="card">Карта 3.3</div>
-            </div>
-            <div id="category4" class="category-block">
-                <div class="card">Карта 4.1</div>
-                <div class="card">Карта 4.2</div>
-                <div class="card">Карта 4.3</div>
-            </div>
-            <div id="category5" class="category-block">
-                <div class="card">Карта 5.1</div>
-                <div class="card">Карта 5.2</div>
-                <div class="card">Карта 5.3</div>
-            </div>
+        <div class="categories" id="categories"></div>
+        <div class="content" id="products"></div>
+    </div>
+
+    <!-- Всплывающее окно -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <img id="modal-img" src="" alt="Товар">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <h2 id="modal-name"></h2>
+            <p><strong>Цена:</strong> <span id="modal-price"></span></p>
+            <p><strong>Категория:</strong> <span id="modal-category"></span></p>
+            <ul id="modal-features"></ul>
+            <button id="add-to-cart">Добавить в корзину</button>
         </div>
     </div>
 
     <footer>
-        &copy; 2025 Ваш сайт. Все права защищены.
+        <div class="footer-column">
+            <h3>Контакты</h3>
+            <p>Email: example@mail.com</p>
+            <p>Телефон: +7 123 456 78 90</p>
+        </div>
+        <div class="footer-column">
+            <h3>Поддержка</h3>
+            <p>FAQ</p>
+            <p>Обратная связь</p>
+        </div>
+        <div class="footer-column">
+            <h3>Социальные сети</h3>
+            <p>Instagram</p>
+            <p>Telegram</p>
+        </div>
     </footer>
 
     <script>
-        function toggleMenu() {
-            let mobileNav = document.querySelector('.mobile-nav');
-            mobileNav.style.display = mobileNav.style.display === 'flex' ? 'none' : 'flex';
+        const productsData = [
+            // Категория 1
+            { 
+                name: "1.1", 
+                img: "https://via.placeholder.com/180x240", 
+                category: "category1", 
+                price: "500", 
+                features: ["Материал: сталь", "Цвет: серебристый", "Размер: 20 см"] 
+            },
+            { 
+                name: "1.2", 
+                img: "https://via.placeholder.com/180x240", 
+                category: "category1", 
+                price: "600", 
+                features: ["Материал: золото", "Цвет: золотой", "Размер: 18 см"] 
+            },
+            { 
+                name: "1.3", 
+                img: "https://via.placeholder.com/180x240", 
+                category: "category1", 
+                price: "700", 
+                features: ["Материал: медь", "Цвет: бронзовый", "Размер: 22 см"] 
+            },
+            
+            // Категория 2
+            { 
+                name: "2.1", 
+                img: "https://via.placeholder.com/180x240", 
+                category: "category2", 
+                price: "800", 
+                features: ["Материал: пластик", "Цвет: красный", "Размер: 25 см"] 
+            },
+            { 
+                name: "2.2", 
+                img: "https://via.placeholder.com/180x240", 
+                category: "category2", 
+                price: "900", 
+                features: ["Материал: дерево", "Цвет: коричневый", "Размер: 30 см"] 
+            },
+            { 
+                name: "2.3", 
+                img: "https://via.placeholder.com/180x240", 
+                category: "category2", 
+                price: "1000", 
+                features: ["Материал: стекло", "Цвет: прозрачный", "Размер: 28 см"] 
+            },
+            
+            // Категория 3
+            { 
+                name: "3.1", 
+                img: "https://via.placeholder.com/180x240", 
+                category: "category3", 
+                price: "1100", 
+                features: ["Материал: алюминий", "Цвет: серый", "Размер: 35 см"] 
+            },
+            { 
+                name: "3.2", 
+                img: "https://via.placeholder.com/180x240", 
+                category: "category3", 
+                price: "1200", 
+                features: ["Материал: керамика", "Цвет: белый", "Размер: 32 см"] 
+            },
+            { 
+                name: "3.3", 
+                img: "https://via.placeholder.com/180x240", 
+                category: "category3", 
+                price: "1300", 
+                features: ["Материал: резина", "Цвет: черный", "Размер: 27 см"] 
+            },
+            
+            // Категория 4
+            { 
+                name: "4.1", 
+                img: "https://via.placeholder.com/180x240", 
+                category: "category4", 
+                price: "1400", 
+                features: ["Материал: металл", "Цвет: синий", "Размер: 40 см"] 
+            },
+            { 
+                name: "4.2", 
+                img: "https://via.placeholder.com/180x240", 
+                category: "category4", 
+                price: "1500", 
+                features: ["Материал: композит", "Цвет: зеленый", "Размер: 38 см"] 
+            },
+            { 
+                name: "4.3", 
+                img: "https://via.placeholder.com/180x240", 
+                category: "category4", 
+                price: "1600", 
+                features: ["Материал: текстиль", "Цвет: фиолетовый", "Размер: 42 см"] 
+            },
+            
+            // Категория 5
+            { 
+                name: "5.1", 
+                img: "https://via.placeholder.com/180x240", 
+                category: "category5", 
+                price: "1700", 
+                features: ["Материал: кожа", "Цвет: черный", "Размер: 45 см"] 
+            },
+            { 
+                name: "5.2", 
+                img: "https://via.placeholder.com/180x240", 
+                category: "category5", 
+                price: "1800", 
+                features: ["Материал: замша", "Цвет: коричневый", "Размер: 44 см"] 
+            },
+            { 
+                name: "5.3", 
+                img: "https://via.placeholder.com/180x240", 
+                category: "category5", 
+                price: "1900", 
+                features: ["Материал: винил", "Цвет: белый", "Размер: 43 см"] 
+            }
+            ];
+
+
+        const categoriesArray = [
+            { name: "Категория 1", id: "category1" },
+            { name: "Категория 2", id: "category2" },
+            { name: "Категория 3", id: "category3" },
+            { name: "Категория 4", id: "category4" },
+            { name: "Категория 5", id: "category5" }
+        ];
+
+        function generateCategories() {
+            const categoriesContainer = document.getElementById('categories');
+            categoriesArray.forEach(category => {
+                let categoryDiv = document.createElement('div');
+                categoryDiv.innerText = category.name;
+                categoryDiv.onclick = () => toggleCategory(category.id);
+                categoriesContainer.appendChild(categoryDiv);
+            });
         }
 
-        function toggleCategory(categoryNumber) {
-            let categoryBlock = document.getElementById('category' + categoryNumber);
-            let isVisible = categoryBlock.style.display === 'flex';
+        function renderProducts(category) {
+            const productsContainer = document.getElementById("products");
+            productsContainer.innerHTML = "";
 
-            document.querySelectorAll('.category-block').forEach(block => {
-                block.style.display = 'none';
+            const filteredProducts = productsData.filter(product => product.category === category);
+
+            filteredProducts.forEach(product => {
+                const card = document.createElement("div");
+                card.classList.add("card");
+
+                const img = document.createElement("img");
+                img.src = product.img;
+                img.alt = product.name;
+
+                const title = document.createElement("p");
+                title.textContent = product.name;
+
+                card.appendChild(img);
+                card.appendChild(title);
+                card.onclick = () => openModal(product); // Открыть модальное окно при клике
+
+                productsContainer.appendChild(card);
+            });
+        }
+
+        let activeCategory = null;
+
+        function toggleCategory(category) {
+            if (activeCategory === category) {
+                document.getElementById("products").innerHTML = "";
+                activeCategory = null;
+            } else {
+                renderProducts(category);
+                activeCategory = category;
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            generateCategories();
+        });
+
+        // Функция для открытия модального окна с информацией о товаре
+        function openModal(product) {
+            document.getElementById('modal').style.display = 'flex';
+
+            // Наполняем модальное окно информацией о товаре
+            document.getElementById('modal-img').src = product.img;
+            document.getElementById('modal-name').textContent = product.name;
+            document.getElementById('modal-price').textContent = product.price;
+            document.getElementById('modal-category').textContent = product.category;
+
+            const featuresList = document.getElementById('modal-features');
+            featuresList.innerHTML = ''; // очищаем список
+
+            product.features.forEach(feature => {
+                let li = document.createElement('li');
+                li.textContent = feature;
+                featuresList.appendChild(li);
+            });
+        }
+
+        // Функция для закрытия модального окна
+        function closeModal() {
+            document.getElementById('modal').style.display = 'none';
+        }
+
+        // Добавляем обработчики событий на карточки товаров
+        function addProductEventListeners() {
+            const cards = document.querySelectorAll('.card');
+            cards.forEach(card => {
+                card.addEventListener('click', () => {
+                    const productId = card.getAttribute('data-id');
+                    const product = productsData.find(item => item.name === productId);
+                    openModal(product);
+                });
+            });
+        }
+
+        // Функция для добавления товара в корзину (можно доработать по мере необходимости)
+        document.getElementById('add-to-cart').addEventListener('click', () => {
+            alert('Товар добавлен в корзину');
+        });
+
+        // Пример для отрисовки товаров и их карточек
+        function renderProducts(category) {
+            const productsContainer = document.getElementById("products");
+            productsContainer.innerHTML = "";
+
+            const filteredProducts = productsData.filter(product => product.category === category);
+
+            filteredProducts.forEach(product => {
+                const card = document.createElement("div");
+                card.classList.add("card");
+                card.setAttribute("data-id", product.name); // добавляем ID товара для поиска
+
+                const img = document.createElement("img");
+                img.src = product.img;
+                img.alt = product.name;
+
+                const title = document.createElement("p");
+                title.textContent = product.name;
+
+                card.appendChild(img);
+                card.appendChild(title);
+                productsContainer.appendChild(card);
             });
 
-            categoryBlock.style.display = isVisible ? 'none' : 'flex';
+            addProductEventListeners(); // После того как все карточки отрисованы, добавляем обработчики событий
         }
+
+
     </script>
 </body>
 </html>
