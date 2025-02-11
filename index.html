@@ -4,68 +4,86 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Интерактивный макет</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            margin: 0;
-            padding: 0;
-        }
-        .logo {
-            width: 150px;
-            height: 50px;
-            background-color: white;
-            border: 1px solid #ccc;
-            margin: 10px;
-        }
-        .categories {
-            width: 200px;
-            padding: 10px;
-        }
-        .categories div {
-            padding: 10px;
-            margin: 5px 0;
-            background-color: #f0f0f0;
-            cursor: pointer;
-            border: 1px solid #ccc;
-        }
-        .content {
-            flex-grow: 1;
-            padding: 10px;
-        }
-        .content .block {
-            display: none;
-            background-color: #ccc;
-            padding: 20px;
-            margin: 10px 0;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="logo">Логотип</div>
-    <div class="categories">
-        <div onclick="showBlock(1)">Категория 1</div>
-        <div onclick="showBlock(2)">Категория 2</div>
-        <div onclick="showBlock(3)">Категория 3</div>
-        <div onclick="showBlock(4)">Категория 4</div>
-        <div onclick="showBlock(5)">Категория 5</div>
-    </div>
-    <div class="content">
-        <div id="block1" class="block">Содержимое блока 1</div>
-        <div id="block2" class="block">Содержимое блока 2</div>
-        <div id="block3" class="block">Содержимое блока 3</div>
-        <div id="block4" class="block">Содержимое блока 4</div>
-        <div id="block5" class="block">Содержимое блока 5</div>
+    <header>
+        <div class="logo">
+            <img src="logo.svg" alt="Логотип">
+        </div>
+        <nav class="nav">
+            <a href="#">Главная</a>
+            <a href="#">О нас</a>
+            <a href="#">Контакты</a>
+        </nav>
+        <div class="burger" onclick="toggleMenu()">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <div class="mobile-nav">
+            <a href="#">Главная</a>
+            <a href="#">О нас</a>
+            <a href="#">Контакты</a>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="categories">
+            <div onclick="toggleCategory(1)">Категория 1</div>
+            <div onclick="toggleCategory(2)">Категория 2</div>
+            <div onclick="toggleCategory(3)">Категория 3</div>
+            <div onclick="toggleCategory(4)">Категория 4</div>
+            <div onclick="toggleCategory(5)">Категория 5</div>
+        </div>
+        <div class="content">
+            <div id="category1" class="category-block">
+                <div class="card">Карта 1.1</div>
+                <div class="card">Карта 1.2</div>
+                <div class="card">Карта 1.3</div>
+            </div>
+            <div id="category2" class="category-block">
+                <div class="card">Карта 2.1</div>
+                <div class="card">Карта 2.2</div>
+                <div class="card">Карта 2.3</div>
+            </div>
+            <div id="category3" class="category-block">
+                <div class="card">Карта 3.1</div>
+                <div class="card">Карта 3.2</div>
+                <div class="card">Карта 3.3</div>
+            </div>
+            <div id="category4" class="category-block">
+                <div class="card">Карта 4.1</div>
+                <div class="card">Карта 4.2</div>
+                <div class="card">Карта 4.3</div>
+            </div>
+            <div id="category5" class="category-block">
+                <div class="card">Карта 5.1</div>
+                <div class="card">Карта 5.2</div>
+                <div class="card">Карта 5.3</div>
+            </div>
+        </div>
     </div>
 
+    <footer>
+        &copy; 2025 Ваш сайт. Все права защищены.
+    </footer>
+
     <script>
-        function showBlock(blockNumber) {
-            // Скрываем все блоки
-            document.querySelectorAll('.content .block').forEach(function(block) {
+        function toggleMenu() {
+            let mobileNav = document.querySelector('.mobile-nav');
+            mobileNav.style.display = mobileNav.style.display === 'flex' ? 'none' : 'flex';
+        }
+
+        function toggleCategory(categoryNumber) {
+            let categoryBlock = document.getElementById('category' + categoryNumber);
+            let isVisible = categoryBlock.style.display === 'flex';
+
+            document.querySelectorAll('.category-block').forEach(block => {
                 block.style.display = 'none';
             });
-            // Показываем выбранный блок
-            document.getElementById('block' + blockNumber).style.display = 'block';
+
+            categoryBlock.style.display = isVisible ? 'none' : 'flex';
         }
     </script>
 </body>
