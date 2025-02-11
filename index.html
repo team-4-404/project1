@@ -1,1 +1,90 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Интерактивный макет</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="logo.svg" alt="Логотип">
+        </div>
+        <nav class="nav">
+            <a href="#">Главная</a>
+            <a href="#">О нас</a>
+            <a href="#">Контакты</a>
+        </nav>
+        <div class="burger" onclick="toggleMenu()">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <div class="mobile-nav">
+            <a href="#">Главная</a>
+            <a href="#">О нас</a>
+            <a href="#">Контакты</a>
+        </div>
+    </header>
 
+    <div class="container">
+        <div class="categories">
+            <div onclick="toggleCategory(1)">Категория 1</div>
+            <div onclick="toggleCategory(2)">Категория 2</div>
+            <div onclick="toggleCategory(3)">Категория 3</div>
+            <div onclick="toggleCategory(4)">Категория 4</div>
+            <div onclick="toggleCategory(5)">Категория 5</div>
+        </div>
+        <div class="content">
+            <div id="category1" class="category-block">
+                <div class="card">Карта 1.1</div>
+                <div class="card">Карта 1.2</div>
+                <div class="card">Карта 1.3</div>
+            </div>
+            <div id="category2" class="category-block">
+                <div class="card">Карта 2.1</div>
+                <div class="card">Карта 2.2</div>
+                <div class="card">Карта 2.3</div>
+            </div>
+            <div id="category3" class="category-block">
+                <div class="card">Карта 3.1</div>
+                <div class="card">Карта 3.2</div>
+                <div class="card">Карта 3.3</div>
+            </div>
+            <div id="category4" class="category-block">
+                <div class="card">Карта 4.1</div>
+                <div class="card">Карта 4.2</div>
+                <div class="card">Карта 4.3</div>
+            </div>
+            <div id="category5" class="category-block">
+                <div class="card">Карта 5.1</div>
+                <div class="card">Карта 5.2</div>
+                <div class="card">Карта 5.3</div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        &copy; 2025 Ваш сайт. Все права защищены.
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            let mobileNav = document.querySelector('.mobile-nav');
+            mobileNav.style.display = mobileNav.style.display === 'flex' ? 'none' : 'flex';
+        }
+
+        function toggleCategory(categoryNumber) {
+            let categoryBlock = document.getElementById('category' + categoryNumber);
+            let isVisible = categoryBlock.style.display === 'flex';
+
+            document.querySelectorAll('.category-block').forEach(block => {
+                block.style.display = 'none';
+            });
+
+            categoryBlock.style.display = isVisible ? 'none' : 'flex';
+        }
+    </script>
+</body>
+</html>
