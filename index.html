@@ -1,1 +1,72 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Интерактивный макет</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            margin: 0;
+            padding: 0;
+        }
+        .logo {
+            width: 150px;
+            height: 50px;
+            background-color: white;
+            border: 1px solid #ccc;
+            margin: 10px;
+        }
+        .categories {
+            width: 200px;
+            padding: 10px;
+        }
+        .categories div {
+            padding: 10px;
+            margin: 5px 0;
+            background-color: #f0f0f0;
+            cursor: pointer;
+            border: 1px solid #ccc;
+        }
+        .content {
+            flex-grow: 1;
+            padding: 10px;
+        }
+        .content .block {
+            display: none;
+            background-color: #ccc;
+            padding: 20px;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="logo">Логотип</div>
+    <div class="categories">
+        <div onclick="showBlock(1)">Категория 1</div>
+        <div onclick="showBlock(2)">Категория 2</div>
+        <div onclick="showBlock(3)">Категория 3</div>
+        <div onclick="showBlock(4)">Категория 4</div>
+        <div onclick="showBlock(5)">Категория 5</div>
+    </div>
+    <div class="content">
+        <div id="block1" class="block">Содержимое блока 1</div>
+        <div id="block2" class="block">Содержимое блока 2</div>
+        <div id="block3" class="block">Содержимое блока 3</div>
+        <div id="block4" class="block">Содержимое блока 4</div>
+        <div id="block5" class="block">Содержимое блока 5</div>
+    </div>
 
+    <script>
+        function showBlock(blockNumber) {
+            // Скрываем все блоки
+            document.querySelectorAll('.content .block').forEach(function(block) {
+                block.style.display = 'none';
+            });
+            // Показываем выбранный блок
+            document.getElementById('block' + blockNumber).style.display = 'block';
+        }
+    </script>
+</body>
+</html>
