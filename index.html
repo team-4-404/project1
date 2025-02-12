@@ -32,15 +32,34 @@
     <!-- Всплывающее окно -->
     <div id="modal" class="modal">
         <div class="modal-content">
-            <img id="modal-img" src="" alt="Товар">
-            <span class="close-btn" onclick="closeModal()">&times;</span>
-            <h2 id="modal-name"></h2>
-            <p><strong>Цена:</strong> <span id="modal-price"></span></p>
-            <p><strong>Категория:</strong> <span id="modal-category"></span></p>
-            <ul id="modal-features"></ul>
-            <button id="add-to-cart">Добавить в корзину</button>
+            <!-- Блок с кнопкой закрытия -->
+            <div class="modal-header">
+                <div class="close-btn" onclick="closeModal()">&times;</div>
+            </div>
+            <!-- Основной контент модального окна -->
+            <div class="modal-body">
+                <!-- Блок с изображением и основной информацией -->
+                <div class="modal-top">
+                    <img id="modal-img" src="" alt="Товар">
+                    <div class="modal-info">
+                        <h2 id="modal-name"></h2>
+                        <p><strong>Цена:</strong> <span id="modal-price"></span></p>
+                        <p><strong>Категория:</strong> <span id="modal-category"></span></p>
+                    </div>
+                </div>
+                <!-- Разделитель для визуального отделения блоков -->
+                <div class="modal-divider"></div>
+                <!-- Блок с характеристиками -->
+                <div class="modal-characteristics">
+                    <h3>Характеристики</h3>
+                    <ul id="modal-features"></ul>
+                </div>
+                <!-- Кнопка добавления товара в корзину -->
+                <button id="add-to-cart">Добавить в корзину</button>
+            </div>
         </div>
     </div>
+    
 
     <footer>
         <div class="footer-column">
@@ -61,130 +80,302 @@
     </footer>
 
     <script>
+        // Функция для переключения бургер-меню
+        function toggleMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.classList.toggle('active');
+        }
+
         const productsData = [
-            // Категория 1
+            // Умный дом Пример
+            // КОЛИЧЕСТВО КАРТОЧЕК СКОЛЬКО ХОТИТЕ
             { 
-                name: "1.1", 
-                img: "https://via.placeholder.com/180x240", 
-                category: "category1", 
+                name: "Умная розетка", 
+                img: "img/img_UD/1.jpg", 
+                category: "Умный дом", // МЕНЯТЬ НЕ НУЖНО
                 price: "500", 
-                features: ["Материал: сталь", "Цвет: серебристый", "Размер: 20 см"] 
+                features: [
+                    "Дистанционное управление", 
+                    "Энергоэффективность", 
+                    "Удалённый контроль"
+                ] 
             },
             { 
-                name: "1.2", 
-                img: "https://via.placeholder.com/180x240", 
-                category: "category1", 
+                name: "Tuya WiFi RF IK-пульт", 
+                img: "img/img_UD/2.jpg", 
+                category: "Умный дом", 
                 price: "600", 
-                features: ["Материал: золото", "Цвет: золотой", "Размер: 18 см"] 
+                features: [
+                    "Беспроводное управление", 
+                    "Совместимость с IoT", 
+                    "Простой интерфейс"
+                ] 
             },
             { 
-                name: "1.3", 
-                img: "https://via.placeholder.com/180x240", 
-                category: "category1", 
+                name: "Wi-Fi умная светодиодная лампа", 
+                img: "img/img_UD/3.jpg", 
+                category: "Умный дом", 
                 price: "700", 
-                features: ["Материал: медь", "Цвет: бронзовый", "Размер: 22 см"] 
+                features: [
+                    "Регулировка яркости", 
+                    "Изменение цвета", 
+                    "Энергосбережение"
+                ] 
+            },
+            { 
+                name: "Вакуумный пылесос", 
+                img: "img/img_UD/4.jpg", 
+                category: "Умный дом", 
+                price: "800", 
+                features: [
+                    "Мощный двигатель", 
+                    "Фильтрация пыли", 
+                    "Лёгкое обслуживание"
+                ] 
+            },
+            { 
+                name: "Автоматическая кормушка для мелких питомцев", 
+                img: "img/img_UD/5.jpg", 
+                category: "Умный дом", 
+                price: "900", 
+                features: [
+                    "Таймер питания", 
+                    "Регулируемый объём", 
+                    "Простота использования"
+                ] 
+            },
+            { 
+                name: "Камера видеонаблюдения IP", 
+                img: "img/img_UD/6.jpg", 
+                category: "Умный дом", 
+                price: "1000", 
+                features: [
+                    "Высокое разрешение", 
+                    "Ночное видение", 
+                    "Двусторонняя аудиосвязь"
+                ] 
+            },
+            { 
+                name: "Умная колонка и отпариватель", 
+                img: "img/img_UD/7.jpg", 
+                category: "Умный дом", 
+                price: "1100", 
+                features: [
+                    "Голосовое управление", 
+                    "Многофункциональность", 
+                    "Интеграция с сервисами"
+                ] 
+            },
+            { 
+                name: "Xiaomi Mijia Pure Smart Humidifier 2", 
+                img: "img/img_UD/8.jpg", 
+                category: "Умный дом", 
+                price: "1200", 
+                features: [
+                    "Интеллектуальное увлажнение", 
+                    "Тихая работа", 
+                    "Управление через приложение"
+                ] 
+            },
+            { 
+                name: "Умный туалет Южная вилла & OEM", 
+                img: "img/img_UD/9.jpg", 
+                category: "Умный дом", 
+                price: "1300", 
+                features: [
+                    "Герметичная конструкция", 
+                    "Энергоэффективность", 
+                    "Лёгкая очистка"
+                ] 
             },
             
-            // Категория 2
+            // Наушники
             { 
                 name: "2.1", 
                 img: "https://via.placeholder.com/180x240", 
-                category: "category2", 
+                category: "Наушники", 
                 price: "800", 
                 features: ["Материал: пластик", "Цвет: красный", "Размер: 25 см"] 
             },
             { 
                 name: "2.2", 
                 img: "https://via.placeholder.com/180x240", 
-                category: "category2", 
+                category: "Наушники", 
                 price: "900", 
                 features: ["Материал: дерево", "Цвет: коричневый", "Размер: 30 см"] 
             },
             { 
                 name: "2.3", 
                 img: "https://via.placeholder.com/180x240", 
-                category: "category2", 
+                category: "Наушники", 
                 price: "1000", 
                 features: ["Материал: стекло", "Цвет: прозрачный", "Размер: 28 см"] 
             },
             
-            // Категория 3
+            //  Комплектующие для пк
+                        { 
+                name: "Процессор Amd Ryzen 5 5600 AM4 OEM", 
+                img: "img/img_KDP/1.png", 
+                category: "Комплектующие для ПК", 
+                price: "12157", 
+                features: [ "Высокая производительность", "Сокет AM4",  "OEM версия" ] 
+            },
+            { 
+                name: "Модуль памяти 16GB ADATA DDR4 (AX4U32008G16A-DCBK20)", 
+                img: "img/img_KDP/2.png", 
+                category: "Комплектующие для ПК", 
+                price: "4192", 
+                features: ["Объём 16 ГБ",  "Тип памяти DDR4",  "Частота 3200 МГц" ] 
+           },
+           { 
+                name: "Термопаста ARCTIC MX-4, 4 гр.", 
+                img: "img/img_KDP/2.png", 
+                category: "Комплектующие для ПК", 
+                price: "564", 
+               features: [  "Высокая теплопроводность",  "Объём 4 грамма",  "Долговечность" ] 
+          },
+          { 
+               name: "Оперативная память Kingston FURY Beast 32 ГБ (16 ГБ x 2 шт.) DDR4 3200 МГц DIMM CL16 KF432C16BB1K2/32", 
+               img: "img/img_KDP/2.png", 
+               category: "Комплектующие для ПК", 
+               price: "8712", 
+               features: [  "Объём 32 ГБ",  "Частота 3200 МГц",  "Набор из двух модулей" ] 
+         },
+         { 
+               name: "Вентилятор для корпуса ID-Cooling FAN-PN-24 White (120x120x25мм, 1250об/мин, 45CFM, 21dB(A), OEM)", 
+               img: "img/img_KDP/2.png", 
+               category: "Комплектующие для ПК", 
+               price: "311", 
+               features: [ "Размер 120x120x25 мм",  "Скорость 1250 об/мин",  "Низкий уровень шума" ] 
+        },
+        { 
+              name: "Корпусный вентилятор Upsiren UF-4 Чёрный", 
+              img: "img/img_KDP/2.png", 
+              category: "Комплектующие для ПК", 
+              price: "543", 
+              features: [ "Эффективное охлаждение", "Чёрный цвет",  "Простота установки"] 
+        },
+        { 
+             name: "Kingston Fury Оперативная память Beast RGB Special Edition DDR4 3200 Мгц 2x8 ГБ (KF432C16BWAK2/16)", 
+             img: "img/img_KDP/ram.png", 
+             category: "Комплектующие для ПК", 
+             price: "2005", 
+            features: ["Объём 16 ГБ (2x8 ГБ)",  "RGB подсветка", "Частота 3200 МГц" ] 
+        },
+        { 
+            name: "Gigabyte Видеокарта GeForce RTX 3050 OC Low Profile 6 ГБ (GV-N3050OC-6GL)", 
+            img: "img/img_KDP/videocard.png", 
+            category: "Комплектующие для ПК", 
+            price: "3050", 
+            features: [ "6 ГБ видеопамяти", "Низкопрофильный дизайн",  "Поддержка Ray Tracing" ] 
+       },
+       { 
+            name: "AMD Процессор Ryzen 7 5700X OEM (без кулера)", 
+            img: "img/img_KDP/processor.png", 
+            category: "Комплектующие для ПК", 
+            price: "23450", 
+            features: [ "8 ядер и 16 потоков",  "Сокет AM4", "Высокая производительность" ] 
+      }
             { 
                 name: "3.1", 
                 img: "https://via.placeholder.com/180x240", 
-                category: "category3", 
+                category: "Комплектующие для пк", 
                 price: "1100", 
                 features: ["Материал: алюминий", "Цвет: серый", "Размер: 35 см"] 
             },
             { 
                 name: "3.2", 
                 img: "https://via.placeholder.com/180x240", 
-                category: "category3", 
+                category: "Комплектующие для пк", 
                 price: "1200", 
                 features: ["Материал: керамика", "Цвет: белый", "Размер: 32 см"] 
             },
             { 
                 name: "3.3", 
                 img: "https://via.placeholder.com/180x240", 
-                category: "category3", 
+                category: "Комплектующие для пк", 
                 price: "1300", 
                 features: ["Материал: резина", "Цвет: черный", "Размер: 27 см"] 
             },
             
-            // Категория 4
+            // Освещение
             { 
                 name: "4.1", 
                 img: "https://via.placeholder.com/180x240", 
-                category: "category4", 
+                category: "Освещение", 
                 price: "1400", 
                 features: ["Материал: металл", "Цвет: синий", "Размер: 40 см"] 
             },
             { 
                 name: "4.2", 
                 img: "https://via.placeholder.com/180x240", 
-                category: "category4", 
+                category: "Освещение", 
                 price: "1500", 
                 features: ["Материал: композит", "Цвет: зеленый", "Размер: 38 см"] 
             },
             { 
                 name: "4.3", 
                 img: "https://via.placeholder.com/180x240", 
-                category: "category4", 
+                category: "Освещение", 
                 price: "1600", 
                 features: ["Материал: текстиль", "Цвет: фиолетовый", "Размер: 42 см"] 
             },
             
-            // Категория 5
+            // Сантехника
             { 
                 name: "5.1", 
                 img: "https://via.placeholder.com/180x240", 
-                category: "category5", 
+                category: "Сантехника", 
                 price: "1700", 
                 features: ["Материал: кожа", "Цвет: черный", "Размер: 45 см"] 
             },
             { 
                 name: "5.2", 
                 img: "https://via.placeholder.com/180x240", 
-                category: "category5", 
+                category: "Сантехника", 
                 price: "1800", 
                 features: ["Материал: замша", "Цвет: коричневый", "Размер: 44 см"] 
             },
             { 
                 name: "5.3", 
                 img: "https://via.placeholder.com/180x240", 
-                category: "category5", 
+                category: "Сантехника", 
                 price: "1900", 
                 features: ["Материал: винил", "Цвет: белый", "Размер: 43 см"] 
-            }
+            },
+            
+            // Электрические инструменты
+            { 
+                name: "5.1", 
+                img: "https://via.placeholder.com/180x240", 
+                category: "Электрические инструменты", 
+                price: "1700", 
+                features: ["Материал: кожа", "Цвет: черный", "Размер: 45 см"] 
+            },
+            { 
+                name: "5.2", 
+                img: "https://via.placeholder.com/180x240", 
+                category: "Электрические инструменты", 
+                price: "1800", 
+                features: ["Материал: замша", "Цвет: коричневый", "Размер: 44 см"] 
+            },
+            { 
+                name: "5.3", 
+                img: "https://via.placeholder.com/180x240", 
+                category: "Электрические инструменты", 
+                price: "1900", 
+                features: ["Материал: винил", "Цвет: белый", "Размер: 43 см"] 
+            },
             ];
 
 
         const categoriesArray = [
-            { name: "Категория 1", id: "category1" },
-            { name: "Категория 2", id: "category2" },
-            { name: "Категория 3", id: "category3" },
-            { name: "Категория 4", id: "category4" },
-            { name: "Категория 5", id: "category5" }
+            { name: "Умный дом", id: "Умный дом" },
+            { name: "Наушники", id: "Наушники" },
+            { name: "Комплектующие для ПК", id: "Комплектующие для ПК" },
+            { name: "Освещение", id: "Освещение" },
+            { name: "Сантехника", id: "Сантехника" },
+            { name: "Электрические инструменты", id: "Электрические инструменты" }
         ];
 
         function generateCategories() {
