@@ -21,86 +21,81 @@ body {
     background-color: rgba(0, 0, 0, 0.5);
     justify-content: center;
     align-items: center;
-    transition: opacity 0.3s ease; /* Плавное появление модального окна */
 }
 
 .modal-content {
     background-color: white;
     padding: 20px;
-    position: relative;
-    max-width: 600px;
+    border-radius: 15px;
     width: 80%;
-    border-radius: 15px; /* Закругленные углы */
-    text-align: center;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Легкая тень для модального окна */
-    animation: slideIn 0.5s ease-out; /* Анимация при открытии */
+    max-width: 600px;
+    position: relative;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-@keyframes slideIn {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+.modal-header {
+    text-align: right;
 }
 
-.modal img {
-    width: 100%;
-    height: auto;
-    border-radius: 10px; /* Закругление изображения */
-}
-
-#modal-details {
-    margin-top: 15px;
-}
-
-#modal-features {
-    list-style-type: none;
-    padding: 0;
-    text-align: left;
-    margin-top: 10px;
-    font-size: 14px;
-    color: #666;
-}
-
-#add-to-cart {
-    all: unset;
-    margin-top: 20px;
-    padding: 12px 25px;
-    background-color: #FCA311;
-    border: none;
-    color: white;
-    cursor: pointer;
-    border-radius: 50px; /* Кнопка с закругленными углами */
-    font-size: 16px;
-    transition: background-color 0.3s ease;
-}
-
-#add-to-cart:hover {
-    background-color: #FF8C00; /* Более яркий оттенок при наведении */
-}
-
-.close {
-    position: absolute;
-    top: 10px;
-    right: 10px;
+.close-btn {
     font-size: 30px;
     cursor: pointer;
     color: #333;
     transition: color 0.3s ease;
 }
 
-.close-btn {
-    font-size: 45px;
-    cursor: pointer;
-    text-align: right;
+.close-btn:hover {
+    color: #FCA311;
 }
 
-.close:hover {
-    color: #FCA311; /* Цвет при наведении на кнопку закрытия */
+.modal-body {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.modal-top {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 15px;
+}
+
+.modal-top img {
+    width: 150px;
+    border-radius: 10px;
+    margin-right: 20px;
+}
+
+.modal-info h2,
+.modal-info p {
+    margin: 0 0 5px 0;
+    text-align: left;
+}
+
+.modal-divider {
+    width: 100%;
+    height: 1px;
+    background-color: #ccc;
+    margin: 15px 0;
+}
+
+.modal-characteristics h3 {
+    margin: 0 0 10px 0;
+}
+
+button#add-to-cart {
+    background-color: #FCA311;
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    align-self: center;
+}
+
+button#add-to-cart:hover {
+    background-color: #FF8C00;
 }
 
 /* Header */
@@ -154,6 +149,7 @@ nav {
     font-size: 24px;
     color: white;
     cursor: pointer;
+    text-align: right;
 }
 
 /* Footer */
@@ -235,7 +231,6 @@ footer {
     width: calc(30% - 20px);
     box-sizing: border-box;
     cursor: pointer;
-    height: 300px;
     border-radius: 12px; /* Закругленные углы */
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease; /* Плавная анимация */
@@ -246,54 +241,73 @@ footer {
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
+.card img {
+    width: 80%;
+}
+
 /* Адаптивность */
 @media (max-width: 768px) {
-    .nav-links {
-        display: none;
-        flex-direction: column;
-        background-color: #14213D;
-        position: absolute;
-        top: 60px;
-        right: 20px;
-        width: 150px;
-        padding: 10px;
-        border-radius: 5px;
-    }
-
-    .nav-links.active {
-        display: flex;
-    }
-
-    .burger-menu {
-        display: block;
-    }
-
     .container {
         flex-direction: column;
     }
 
     .categories {
-        width: 100%;
-        text-align: center;
-        margin-bottom: 20px;
+        width: 90%;
+        align-items: center;
+    }
+     /* Показываем бургер-меню на мобильных устройствах */
+     .burger-menu {
+        display: block;
+        cursor: pointer;
+        font-size: 30px;
+        color: white; /* при необходимости поменяйте цвет */
+        position: fixed;
+        top: 20px; /* Расстояние от верхней границы */
+        right: 20px; /* Расстояние от левого края */
+        z-index: 1100; /* Обеспечивает, что кнопка будет всегда поверх остальных элементов */
     }
 
-    .category-block {
-        justify-content: center;
+    /* Скрываем навигационные ссылки по умолчанию */
+    .nav-links {
+        display: none;
     }
 
-    .card {
-        width: calc(50% - 20px);
-    }
-
-    footer {
+    /* При активации меню (добавлен класс active) весь экран покрывается оверлеем с центровкой ссылок */
+    .nav-links.active {
+        display: flex;
         flex-direction: column;
-        text-align: center;
+        justify-content: center;
+        align-items: center;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(20, 33, 61, 0.95); /* полупрозрачный фон; можно настроить прозрачность */
+        z-index: 1000;
     }
 
-    .footer-column {
-        width: 100%;
-        margin-bottom: 15px;
+    /* Отступы для пунктов меню */
+    .nav-links li {
+        margin: 15px 0;
+    }
+
+    /* Оформление ссылок меню */
+    .nav-links a {
+        display: block;
+        padding: 15px 30px;
+        border: 2px solid #FCA311; /* цвет обводки */
+        border-radius: 30px;       /* скругление углов */
+        color: #fff;
+        text-decoration: none;
+        font-size: 18px;
+        transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    /* Эффект при наведении */
+    .nav-links a:hover {
+        background-color: #FCA311;
+        color: #14213D;
     }
 }
 
