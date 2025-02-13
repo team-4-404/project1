@@ -14,7 +14,7 @@
         <div>
             <nav>
                 <ul class="nav-links">
-                    <li><a href="#">Главная</a></li>
+                    <li><a href="" onclick="openLinksModal(); return false;">Главная</a></li>
                     <li><a href="#">О нас</a></li>
                     <li><a href="#">Корзина</a></li>
                     <li><a href="#">Контакты</a></li>
@@ -59,6 +59,19 @@
             </div>
         </div>
     </div>
+
+    <div id="modal-links" class="modal">
+        <div class="modal-content">
+            <div class="close-btn" onclick="closeeModal()">&times;</div>
+            <div class="modal-buttons">
+                <a href="#" class="add-to-cart" onclick="openLink('https://github.com/team-4-404/project1')">GitHub</a>
+                <a href="#" class="add-to-cart" onclick="openLink('https://www.figma.com/design/RZzGFwpGigmfodpnXu5r10/Untitled?node-id=0-1&t=UrOhogdPcS7ZKXRj-1')">Figma</a>
+            </div>
+        </div>
+    </div>
+    
+
+    
     
 
     <footer>
@@ -80,6 +93,11 @@
     </footer>
 
     <script>
+
+        function openLinksModal() {
+            document.getElementById('modal-links').style.display = 'flex';
+        }
+
         // Функция для переключения бургер-меню
         function toggleMenu() {
             const navLinks = document.querySelector('.nav-links');
@@ -213,7 +231,7 @@
             },
             
             //  Комплектующие для пк
-                        { 
+            { 
                 name: "Процессор Amd Ryzen 5 5600 AM4 OEM", 
                 img: "img/img_KDP/1.png", 
                 category: "Комплектующие для ПК", 
@@ -320,6 +338,7 @@
                 category: "Освещение", 
                 price: "886", 
                 features: ["Гарантийный срок 12 месяцев; 1 год", "Питание	12V; 220V; 24V", "Напряжение	220-240В/50Гц", "Количество ламп	360 шт.", "Длина (м) 20 м", "Страна производства	Китай", "Комплектация	1 блок питания; 1 светодиодная лента; 1 пульт управления; 1 блок управления"]
+
             },
             
             // Сантехника
@@ -495,8 +514,47 @@
                 card.appendChild(title);
                 productsContainer.appendChild(card);
             });
+        }
+
+        // Функция для добавления товара в корзину (можно доработать по мере необходимости)
+        document.getElementById('add-to-cart').addEventListener('click', () => {
+            alert('Товар добавлен в корзину');
+        });
+
+        // Пример для отрисовки товаров и их карточек
+        function renderProducts(category) {
+            const productsContainer = document.getElementById("products");
+            productsContainer.innerHTML = "";
+
+            const filteredProducts = productsData.filter(product => product.category === category);
+
+            filteredProducts.forEach(product => {
+                const card = document.createElement("div");
+                card.classList.add("card");
+                card.setAttribute("data-id", product.name); // добавляем ID товара для поиска
+
+                const img = document.createElement("img");
+                img.src = product.img;
+                img.alt = product.name;
+
+                const title = document.createElement("p");
+                title.textContent = product.name;
+
+                card.appendChild(img);
+                card.appendChild(title);
+                productsContainer.appendChild(card);
+            });
 
             addProductEventListeners(); // После того как все карточки отрисованы, добавляем обработчики событий
+        }
+
+        function openLink(url) {
+            window.open(url, '_blank');
+        }
+
+        function closeeModal() {
+            document.getElementById('modal-links').style.display = 'none';
+
         }
 
 

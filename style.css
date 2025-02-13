@@ -42,6 +42,8 @@ body {
     cursor: pointer;
     color: #333;
     transition: color 0.3s ease;
+    text-align: end;
+
 }
 
 .close-btn:hover {
@@ -83,8 +85,9 @@ body {
     margin: 0 0 10px 0;
 }
 
-button#add-to-cart {
-    background-color: #FCA311;
+
+button#add-to-cart, .add-to-cart {
+    background-color: #14213D;
     color: white;
     padding: 12px 25px;
     border: none;
@@ -92,11 +95,15 @@ button#add-to-cart {
     cursor: pointer;
     transition: background-color 0.3s ease;
     align-self: center;
+
+    text-decoration: none;
 }
 
-button#add-to-cart:hover {
-    background-color: #FF8C00;
+
+button#add-to-cart:hover, .add-to-cart:hover {
+    background-color: #0e172b;
 }
+
 
 /* Header */
 header {
