@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Корзина</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="img/logo.svg" alt="Логотип">
+        </div>
+        <div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="" onclick="openLinksModal(); return false;">Главная</a></li>
+                    <li><a href="">О нас</a></li>
+                    <li><a href="index.html">Каталог</a></li>
+                    <li><a href="favorite.html">Избранное</a></li>
+                    <li><a href="">Корзина</a></li>
+                    <li><a href="">Контакты</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="burger-menu" onclick="toggleMenu()">☰</div>
+    </header>
+
+    <main class="cart">
+        <div id="cart-content"></div>
+        <div class="checkout">
+            <button class="checkout-btn">Оформить заказ</button>
+        </div>
+    </main>
+    
+    <script>
+        function initializeCartPage() {
+            const cartContent = document.getElementById('cart-content');
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+            if (cart.length === 0) {
+                cartContent.innerHTML = `<p class="empty-cart">Ваша корзина пуста</p>`;
+            } else {
+                let tableHTML = `
+                    <table class="cart-table">
+                        <thead>
+                            <tr>
+                                <th>Название</th>
+                                <th>Цена</th>
+                                <th>Кол-во</th>
+                                <th>Итог</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                `;
+
+                cart.forEach((item, index) => {
+                    tableHTML += `
+                        <tr data-index="${index}">
+                            <td>${item.name}</td>
+                            <td>${item.price.toLocaleString()} ₽</td>
+                            <td>
+                                <button class="decrease-qty" data-index="${index}">−</button>
+                                <span class="item-quantity">${item.quantity}</span>
+                                <button class="increase-qty" data-index="${index}">+</button>
+                            </td>
+                            <td class="item-total">${(item.price * item.quantity).toLocaleString()} ₽</td>
+                            <td><button class="remove-btn" data-index="${index}">✕</button></td>
+                        </tr>
+                    `;
+                });
+
+                tableHTML += `</tbody></table>`;
+                tableHTML += `<p class="total-price">Сумма к оплате: <span id="total-price">${calculateTotalPrice(cart)} ₽</span></p>`;
+                cartContent.innerHTML = tableHTML;
+
+                // Назначаем обработчики событий
+                document.querySelectorAll('.remove-btn').forEach(button => {
+                    button.addEventListener('click', function () {
+                        removeFromCart(this.dataset.index);
+                    });
+                });
+
+                document.querySelectorAll('.increase-qty').forEach(button => {
+                    button.addEventListener('click', function () {
+                        updateQuantity(this.dataset.index, 1);
+                    });
+                });
+
+                document.querySelectorAll('.decrease-qty').forEach(button => {
+                    button.addEventListener('click', function () {
+                        updateQuantity(this.dataset.index, -1);
+                    });
+                });
+            }
+        }
+
+        // Функция удаления товара из корзины
+        function removeFromCart(index) {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            cart.splice(index, 1);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            initializeCartPage();
+        }
+
+        // Функция обновления количества товара
+        function updateQuantity(index, change) {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            let item = cart[index];
+
+            if (item) {
+                item.quantity = Math.max(1, item.quantity + change); // Минимум 1 шт.
+                cart[index] = item;
+                localStorage.setItem('cart', JSON.stringify(cart));
+                initializeCartPage();
+            }
+        }
+
+        // Функция расчета общей суммы к оплате
+        function calculateTotalPrice(cart) {
+            return cart.reduce((total, item) => total + item.price * item.quantity, 0).toLocaleString();
+        }
+
+        // Запускаем при загрузке страницы
+        document.addEventListener('DOMContentLoaded', initializeCartPage);
+
+
+    </script>
+</body>
+</html>
