@@ -11,6 +11,10 @@
         <div class="logo">
             <img src="img/logo.svg" alt="Логотип">
         </div>
+
+        <div class="search-container">
+            <input type="text" id="search-input" placeholder="Поиск товаров..." oninput="searchProducts()">
+        </div>
         <div>
             <nav>
                 <ul class="nav-links">
@@ -101,6 +105,74 @@
     </footer>
 
     <script>
+
+//Функция для поиска товаров
+function searchProducts() {
+    const searchText = document.getElementById('search-input').value.toLowerCase();
+    const filteredProducts = productsData.filter(product => 
+        product.name.toLowerCase().includes(searchText)
+    );
+
+    renderFilteredProducts(filteredProducts);
+}
+
+function renderFilteredProducts(filteredProducts) {
+    const productsContainer = document.getElementById("products");
+    productsContainer.innerHTML = "";
+
+    if (filteredProducts.length === 0) {
+        productsContainer.innerHTML = "<p>Товары не найдены</p>";
+        return;
+    }
+
+    filteredProducts.forEach(product => {
+        const card = document.createElement("div");
+        card.classList.add("card");
+        card.setAttribute("data-id", product.name);
+
+        const img = document.createElement("img");
+        img.src = product.img;
+        img.alt = product.name;
+        img.style.width = "100%";
+        img.style.borderRadius = "10px";
+
+        const title = document.createElement("p");
+        title.textContent = product.name;
+
+        const price = document.createElement("p");
+        price.textContent = `Цена: ${product.price} руб.`;
+
+        const favoriteIcon = document.createElement("img");
+        favoriteIcon.classList.add("favorite-icon");
+        favoriteIcon.setAttribute("data-product-id", product.name);
+        favoriteIcon.src = isFavorite(product.name) ? "img/fav-active.png" : "img/fav.png";
+        favoriteIcon.onclick = function(event) {
+            event.stopPropagation();
+            toggleFavorite(product, this);
+        };
+
+        const addToCartButton = document.createElement("button");
+        addToCartButton.textContent = cart.some(item => item.name === product.name) ? "Добавлено в корзину" : "Добавить в корзину";
+        addToCartButton.disabled = cart.some(item => item.name === product.name);
+        addToCartButton.onclick = (event) => {
+            event.stopPropagation();
+            addToCart(product, addToCartButton);
+        };
+
+        const actionsContainer = document.createElement("div");
+        actionsContainer.classList.add("actions-container");
+        actionsContainer.appendChild(addToCartButton);
+
+        card.appendChild(favoriteIcon);
+        card.appendChild(img);
+        card.appendChild(title);
+        card.appendChild(price);
+        card.appendChild(actionsContainer);
+        card.onclick = () => openModal(product);
+
+        productsContainer.appendChild(card);
+    });
+}
 
         function openLinksModal() {
             document.getElementById('modal-links').style.display = 'flex';
@@ -651,7 +723,6 @@
         if (!Array.isArray(cart)) cart = [];
         let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
 
-
         document.addEventListener("DOMContentLoaded", () => {
             generateCategories();
             updateCartDisplay();
@@ -668,17 +739,22 @@
             });
         }
 
+
         let activeCategory = null;
 
         function toggleCategory(category) {
-            if (activeCategory === category) {
-                document.getElementById("products").innerHTML = "";
-                activeCategory = null;
-            } else {
-                renderProducts(category);
-                activeCategory = category;
-            }
-        }
+    if (activeCategory === category) {
+        document.getElementById("products").innerHTML = "";
+        activeCategory = null;
+    } else {
+        const searchText = document.getElementById('search-input').value.toLowerCase();
+        const filteredProducts = productsData.filter(product => 
+            product.category === category && product.name.toLowerCase().includes(searchText)
+        );
+        renderFilteredProducts(filteredProducts);
+        activeCategory = category;
+    }
+}
 
         function renderProducts(category) {
         const productsContainer = document.getElementById("products");
