@@ -11,6 +11,7 @@
         <div class="logo">
             <img src="img/logo.svg" alt="Логотип">
         </div>
+
         <div class="search-container">
             <input type="text" id="search-input" placeholder="Поиск товаров..." oninput="searchProducts()">
         </div>
@@ -104,6 +105,7 @@
     </footer>
 
     <script>
+
 //Функция для поиска товаров
 function searchProducts() {
     const searchText = document.getElementById('search-input').value.toLowerCase();
@@ -721,7 +723,6 @@ function renderFilteredProducts(filteredProducts) {
         if (!Array.isArray(cart)) cart = [];
         let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
 
-
         document.addEventListener("DOMContentLoaded", () => {
             generateCategories();
             updateCartDisplay();
@@ -737,6 +738,7 @@ function renderFilteredProducts(filteredProducts) {
                 categoriesContainer.appendChild(categoryDiv);
             });
         }
+
 
         let activeCategory = null;
 
