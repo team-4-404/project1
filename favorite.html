@@ -91,6 +91,38 @@
         <div class="burger-menu" onclick="toggleMenu()">☰</div>
     </header>
     <div id="favorites-container"></div>
+    <!-- Всплывающее окно -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <!-- Блок с кнопкой закрытия -->
+            <div class="modal-header">
+                <div class="close-btn" onclick="closeModal()">&times;</div>
+            </div>
+            <!-- Основной контент модального окна -->
+            <div class="modal-body">
+                <!-- Блок с изображением и основной информацией -->
+                <div class="modal-top">
+                    <img id="modal-img" src="" alt="Товар">
+                    <div class="modal-info">
+                        <h2 id="modal-name"></h2>
+                        <p><strong>Цена:</strong> <span id="modal-price"></span></p>
+                        <p><strong>Категория:</strong> <span id="modal-category"></span></p>
+                    </div>
+                </div>
+                <!-- Разделитель для визуального отделения блоков -->
+                <div class="modal-divider"></div>
+                <!-- Блок с характеристиками -->
+                <div class="modal-characteristics">
+                    <h3>Характеристики</h3>
+                    <ul id="modal-features"></ul>
+                </div>
+                <!-- Блок с кнопками -->
+                <div class="modal-actions">
+                    <button id="modal-add-to-cart">Добавить в корзину</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script>
         let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
@@ -136,6 +168,10 @@
                 card.appendChild(title);
                 card.appendChild(price);
                 card.appendChild(addToCartButton);
+                title.onclick = (event) => {
+                    console.log("Клик по карточке:", product); // Вывод информации о товаре
+                    openModal(product);
+                };
 
                 container.appendChild(card);
             });
@@ -155,6 +191,83 @@
                 button.disabled = true;
             }
         }
+
+    
+        function openModal(product) {
+            console.log("Открытие модального окна:", product);
+
+            const modal = document.getElementById('modal');
+            const modalImg = document.getElementById('modal-img');
+            const modalName = document.getElementById('modal-name');
+            const modalPrice = document.getElementById('modal-price');
+            const modalCategory = document.getElementById('modal-category');
+            const modalFeatures = document.getElementById('modal-features');
+            const modalAddToCartBtn = document.getElementById('modal-add-to-cart');
+
+            if (!modal || !modalImg || !modalName || !modalPrice || !modalCategory || !modalFeatures || !modalAddToCartBtn) {
+                console.error("Ошибка: Один или несколько элементов модального окна не найдены!");
+                return;
+            }
+
+            modalImg.src = product.img;
+            modalName.textContent = product.name;
+            modalPrice.textContent = `${product.price} руб.`;
+            modalCategory.textContent = product.category;
+
+            modalFeatures.innerHTML = "";
+            if (product.features && product.features.length > 0) {
+                product.features.forEach(feature => {
+                    const li = document.createElement('li');
+                    li.textContent = feature;
+                    modalFeatures.appendChild(li);
+                });
+            } else {
+                modalFeatures.innerHTML = "<li>Нет характеристик</li>";
+            }
+
+            updateCartButtonState(modalAddToCartBtn, product);
+            modalAddToCartBtn.onclick = () => addToCart(product, modalAddToCartBtn);
+
+            modal.style.display = 'block';
+        }
+
+        // Функция закрытия модального окна
+        function closeModal() {
+            document.getElementById('modal').style.display = 'none';
+        }
+
+
+        // Функция обновления кнопки "Добавить в корзину"
+        function updateCartButtonState(button, product) {
+            const isInCart = cart.some(item => item.id === product.id);
+            button.textContent = isInCart ? "Добавлено в корзину" : "Добавить в корзину";
+            button.disabled = isInCart;
+        }
+
+        // Функция обновления иконки избранного
+        function updateFavoriteIcon(icon, product) {
+            const isFavorite = favorites.some(item => item.id === product.id);
+            icon.src = isFavorite ? "img/fav-active.png" : "img/fav.png";
+        }
+
+        // Добавляем обработчик клика на карточки товаров в избранном
+        document.addEventListener("DOMContentLoaded", () => {
+            renderFavorites();
+
+            document.querySelectorAll(".card").forEach(card => {
+                card.onclick = function () {
+                    const productId = parseInt(this.getAttribute("data-id"));
+                    const product = favorites.find(item => item.id === productId);
+
+                    if (product) {
+                        console.log("Клик по карточке избранного:", product);
+                        openModal(product);
+                    } else {
+                        console.error("Ошибка: Товар с id", productId, "не найден в избранном!");
+                    }
+                };
+            });
+        });
 
         document.addEventListener("DOMContentLoaded", renderFavorites);
     </script>
