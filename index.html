@@ -185,13 +185,12 @@ function renderFilteredProducts(filteredProducts) {
         }
 
         const productsData = [
-            // Умный дом Пример
-            // КОЛИЧЕСТВО КАРТОЧЕК СКОЛЬКО ХОТИТЕ
             { 
                 id: 1,
                 name: "Умная розетка", 
                 img: "img/img_UD/1.jpg", 
-                category: "Умный дом", // МЕНЯТЬ НЕ НУЖНО
+                category: "Умный дом",
+                subcategory: "Автоматика", // Добавляем подкатегорию
                 price: "500", 
                 features: [
                     "Дистанционное управление", 
@@ -201,21 +200,10 @@ function renderFilteredProducts(filteredProducts) {
             },
             { 
                 id: 2,
-                name: "Tuya WiFi RF IK-пульт", 
-                img: "img/img_UD/8.jpg", 
-                category: "Умный дом", 
-                price: "600", 
-                features: [
-                    "Беспроводное управление", 
-                    "Совместимость с IoT", 
-                    "Простой интерфейс"
-                ] 
-            },
-            { 
-                id: 3,
                 name: "Wi-Fi умная светодиодная лампа", 
                 img: "img/img_UD/9.jpg", 
-                category: "Умный дом", 
+                category: "Умный дом",
+                subcategory: "Освещение", // Подкатегория
                 price: "700", 
                 features: [
                     "Регулировка яркости", 
@@ -224,10 +212,24 @@ function renderFilteredProducts(filteredProducts) {
                 ] 
             },
             { 
+                id: 3,
+                name: "Камера видеонаблюдения IP", 
+                img: "img/img_UD/7.jpg", 
+                category: "Умный дом",
+                subcategory: "Безопасность", // Подкатегория
+                price: "1000", 
+                features: [
+                    "Высокое разрешение", 
+                    "Ночное видение", 
+                    "Двусторонняя аудиосвязь"
+                ] 
+            },
+            { 
                 id: 4,
                 name: "Вакуумный пылесос", 
                 img: "img/img_UD/6.jpg", 
                 category: "Умный дом", 
+                subcategory: "Уборка и уход",
                 price: "800", 
                 features: [
                     "Мощный двигатель", 
@@ -240,6 +242,7 @@ function renderFilteredProducts(filteredProducts) {
                 name: "Автоматическая кормушка для мелких питомцев", 
                 img: "img/img_UD/5.jpg", 
                 category: "Умный дом", 
+                subcategory: "Автоматика", 
                 price: "900", 
                 features: [
                     "Таймер питания", 
@@ -248,22 +251,11 @@ function renderFilteredProducts(filteredProducts) {
                 ] 
             },
             { 
-                id: 6,
-                name: "Камера видеонаблюдения IP", 
-                img: "img/img_UD/7.jpg", 
-                category: "Умный дом", 
-                price: "1000", 
-                features: [
-                    "Высокое разрешение", 
-                    "Ночное видение", 
-                    "Двусторонняя аудиосвязь"
-                ] 
-            },
-            { 
                 id: 7,
                 name: "Умная колонка и отпариватель", 
                 img: "img/img_UD/2.jpg", 
                 category: "Умный дом", 
+                subcategory: "Автоматика", 
                 price: "1100", 
                 features: [
                     "Голосовое управление", 
@@ -276,6 +268,7 @@ function renderFilteredProducts(filteredProducts) {
                 name: "Xiaomi Mijia Pure Smart Humidifier 2", 
                 img: "img/img_UD/3.jpg", 
                 category: "Умный дом", 
+                subcategory: "Климат и комфорт",
                 price: "1200", 
                 features: [
                     "Интеллектуальное увлажнение", 
@@ -288,6 +281,7 @@ function renderFilteredProducts(filteredProducts) {
                 name: "Умный туалет Южная вилла & OEM", 
                 img: "img/img_UD/4.jpg", 
                 category: "Умный дом", 
+                subcategory: "Климат и комфорт",
                 price: "1300", 
                 features: [
                     "Герметичная конструкция", 
@@ -302,6 +296,7 @@ function renderFilteredProducts(filteredProducts) {
                 name: "Наушники Supreme Bass",
                 img: "img/img_N/0.jpg", 
                 category: "Наушники", 
+                subcategory: "Беспроводные",
                 price: "1200", 
                 features: [
                     "Активное шумоподавление", 
@@ -313,7 +308,8 @@ function renderFilteredProducts(filteredProducts) {
             {
                 name: "Sony WH-1000XM4", 
                 img: "img/img_N/1.jpg", 
-                category: "Наушники", // МЕНЯТЬ НЕ НУЖНО
+                category: "Наушники",
+                subcategory: "Беспроводные", // МЕНЯТЬ НЕ НУЖНО
                 price: "32000", 
                 features: [
                     "Активное шумоподавление", 
@@ -324,7 +320,8 @@ function renderFilteredProducts(filteredProducts) {
             { 
                 name: "Bose QuietComfort 35 II", 
                 img: "img/img_N/2.jpg", 
-                category: "Наушники", // МЕНЯТЬ НЕ НУЖНО
+                category: "Наушники",
+                subcategory: "Беспроводные", // МЕНЯТЬ НЕ НУЖНО
                 price: "28000", 
                 features: [
                     "Комфортная посадка", 
@@ -335,7 +332,8 @@ function renderFilteredProducts(filteredProducts) {
             { 
                 name: "Sennheiser HD 660 S", 
                 img: "img/img_N/3.jpg", 
-                category: "Наушники", // МЕНЯТЬ НЕ НУЖНО
+                category: "Наушники", 
+                subcategory: "Проводные",// МЕНЯТЬ НЕ НУЖНО
                 price: "45000", 
                 features: [
                     "Аудиофильский звук", 
@@ -346,7 +344,8 @@ function renderFilteredProducts(filteredProducts) {
             { 
                 name: "Audio-Technica ATH-M50x", 
                 img: "img/img_N/4.png", 
-                category: "Наушники", // МЕНЯТЬ НЕ НУЖНО
+                category: "Наушники",
+                subcategory: "Беспроводные", // МЕНЯТЬ НЕ НУЖНО
                 price: "15000", 
                 features: [
                     "Профессиональное качество", 
@@ -357,7 +356,8 @@ function renderFilteredProducts(filteredProducts) {
             { 
                 name: "Bose Noise Cancelling Headphones 700", 
                 img: "img/img_N/5.jpg", 
-                category: "Наушники", // МЕНЯТЬ НЕ НУЖНО
+                category: "Наушники", 
+                subcategory: "Беспроводные",// МЕНЯТЬ НЕ НУЖНО
                 price: "35000", 
                 features: [
                     "Современный дизайн", 
@@ -368,7 +368,8 @@ function renderFilteredProducts(filteredProducts) {
             { 
                 name: "Jabra Elite 85h", 
                 img: "img/img_N/6.jpg", 
-                category: "Наушники", // МЕНЯТЬ НЕ НУЖНО
+                category: "Наушники",
+                subcategory: "Беспроводные", // МЕНЯТЬ НЕ НУЖНО
                 price: "22000", 
                 features: [
                     "Устойчивость к погодным условиям", 
@@ -379,7 +380,8 @@ function renderFilteredProducts(filteredProducts) {
             { 
                 name: "Bowers & Wilkins PX7", 
                 img: "img/img_N/7.jpg", 
-                category: "Наушники", // МЕНЯТЬ НЕ НУЖНО
+                category: "Наушники", 
+                subcategory: "Беспроводные",// МЕНЯТЬ НЕ НУЖНО
                 price: "40000", 
                 features: [
                     "Высококачественная акустика", 
@@ -390,7 +392,8 @@ function renderFilteredProducts(filteredProducts) {
             { 
                 name: "Bang & Olufsen Beoplay H9", 
                 img: "img/img_N/8.jpg", 
-                category: "Наушники", // МЕНЯТЬ НЕ НУЖНО
+                category: "Наушники", 
+                subcategory: "Беспроводные",// МЕНЯТЬ НЕ НУЖНО
                 price: "45000", 
                 features: [
                     "Элегантный дизайн", 
@@ -401,7 +404,8 @@ function renderFilteredProducts(filteredProducts) {
             { 
                 name: "AKG N700NC", 
                 img: "img/img_N/9.jpg", 
-                category: "Наушники", // МЕНЯТЬ НЕ НУЖНО
+                category: "Наушники", 
+                subcategory: "Беспроводные",// МЕНЯТЬ НЕ НУЖНО
                 price: "18000", 
                 features: [
                     "Активное шумоподавление", 
@@ -412,7 +416,8 @@ function renderFilteredProducts(filteredProducts) {
             { 
                 name: "Plantronics BackBeat Pro 2", 
                 img: "img/img_N/10.jpg", 
-                category: "Наушники", // МЕНЯТЬ НЕ НУЖНО
+                category: "Наушники", 
+                subcategory: "Беспроводные",// МЕНЯТЬ НЕ НУЖНО
                 price: "16000", 
                 features: [
                     "Отличное качество звука", 
@@ -423,7 +428,8 @@ function renderFilteredProducts(filteredProducts) {
             { 
                 name: "Shure AONIC 50", 
                 img: "img/img_N/11.jpg", 
-                category: "Наушники", // МЕНЯТЬ НЕ НУЖНО
+                category: "Наушники",
+                subcategory: "Беспроводные", // МЕНЯТЬ НЕ НУЖНО
                 price: "30000", 
                 features: [
                     "Высокая детализация", 
@@ -434,7 +440,8 @@ function renderFilteredProducts(filteredProducts) {
             { 
                 name: "JBL Live 650BTNC", 
                 img: "img/img_N/12.jpg", 
-                category: "Наушники", // МЕНЯТЬ НЕ НУЖНО
+                category: "Наушники", 
+                subcategory: "Беспроводные",// МЕНЯТЬ НЕ НУЖНО
                 price: "19000", 
                 features: [
                     "Мощный бас", 
@@ -450,6 +457,7 @@ function renderFilteredProducts(filteredProducts) {
                 name: "Процессор Amd Ryzen 5 5600 AM4 OEM", 
                 img: "img/img_KDP/1.png", 
                 category: "Комплектующие для ПК", 
+                subcategory: "Процессоры",
                 price: "12157", 
                 features: [ "Высокая производительность", "Сокет AM4",  "OEM версия" ] 
             },
@@ -458,6 +466,7 @@ function renderFilteredProducts(filteredProducts) {
                 name: "Модуль памяти 16GB ADATA DDR4 (AX4U32008G16A-DCBK20)", 
                 img: "img/img_KDP/2.png", 
                 category: "Комплектующие для ПК", 
+                subcategory: "Оперативная память (RAM)",
                 price: "4192", 
                 features: ["Объём 16 ГБ",  "Тип памяти DDR4",  "Частота 3200 МГц" ] 
             },
@@ -466,6 +475,7 @@ function renderFilteredProducts(filteredProducts) {
                 name: "Термопаста ARCTIC MX-4, 4 гр.", 
                 img: "img/img_KDP/3.png", 
                 category: "Комплектующие для ПК", 
+                subcategory: "Охлаждение",
                 price: "564", 
                 features: [  "Высокая теплопроводность",  "Объём 4 грамма",  "Долговечность" ] 
             },
@@ -474,6 +484,7 @@ function renderFilteredProducts(filteredProducts) {
                 name: "Оперативная память Kingston FURY Beast 32 ГБ (16 ГБ x 2 шт.) DDR4 3200 МГц DIMM CL16 KF432C16BB1K2/32", 
                 img: "img/img_KDP/4.png", 
                 category: "Комплектующие для ПК", 
+                subcategory: "Оперативная память (RAM)",
                 price: "8712", 
                 features: [  "Объём 32 ГБ",  "Частота 3200 МГц",  "Набор из двух модулей" ] 
             },
@@ -482,6 +493,7 @@ function renderFilteredProducts(filteredProducts) {
                 name: "Вентилятор для корпуса ID-Cooling FAN-PN-24 White (120x120x25мм, 1250об/мин, 45CFM, 21dB(A), OEM)", 
                 img: "img/img_KDP/5.png", 
                 category: "Комплектующие для ПК", 
+                subcategory: "Охлаждение",
                 price: "311", 
                 features: [ "Размер 120x120x25 мм",  "Скорость 1250 об/мин",  "Низкий уровень шума" ] 
             },
@@ -490,6 +502,7 @@ function renderFilteredProducts(filteredProducts) {
                 name: "Корпусный вентилятор Upsiren UF-4 Чёрный", 
                 img: "img/img_KDP/6.png", 
                 category: "Комплектующие для ПК", 
+                subcategory: "Охлаждение",
                 price: "543", 
                 features: [ "Эффективное охлаждение", "Чёрный цвет",  "Простота установки"] 
             },
@@ -498,6 +511,7 @@ function renderFilteredProducts(filteredProducts) {
                 name: "Kingston Fury Оперативная память Beast RGB Special Edition DDR4 3200 Мгц 2x8 ГБ (KF432C16BWAK2/16)", 
                 img: "img/img_KDP/ram.png", 
                 category: "Комплектующие для ПК", 
+                subcategory: "Оперативная память (RAM)",
                 price: "2005", 
                 features: ["Объём 16 ГБ (2x8 ГБ)",  "RGB подсветка", "Частота 3200 МГц" ] 
             },
@@ -506,6 +520,7 @@ function renderFilteredProducts(filteredProducts) {
                 name: "Gigabyte Видеокарта GeForce RTX 3050 OC Low Profile 6 ГБ (GV-N3050OC-6GL)", 
                 img: "img/img_KDP/videocard.png", 
                 category: "Комплектующие для ПК", 
+                subcategory: "Видеокарты",
                 price: "3050", 
                 features: [ "6 ГБ видеопамяти", "Низкопрофильный дизайн",  "Поддержка Ray Tracing" ] 
             },
@@ -514,6 +529,7 @@ function renderFilteredProducts(filteredProducts) {
                 name: "AMD Процессор Ryzen 7 5700X OEM (без кулера)", 
                 img: "img/img_KDP/processor.png", 
                 category: "Комплектующие для ПК", 
+                subcategory: "Процессоры",
                 price: "23450", 
                 features: [ "8 ядер и 16 потоков",  "Сокет AM4", "Высокая производительность" ] 
             },
@@ -525,6 +541,7 @@ function renderFilteredProducts(filteredProducts) {
                 name: "Светодиодные лампочки Е14 12 ВТ дневной свет 10 шт", 
                 img: "img/img_O/1.png", 
                 category: "Освещение", 
+                subcategory: "Светодиодные лампы",
                 price: "590", 
                 features: ["Артикул: 103359703", "Модель: лампочка е14", "Количество предметов в упаковке: 10 шт", "Гарантийный срок: 2 года", "Напряжение	175-265В/50Гц"] 
             },
@@ -533,6 +550,7 @@ function renderFilteredProducts(filteredProducts) {
                 name: "Энергосберегающая лампочка U-образная 11W 4200К G23", 
                 img: "https://basket-01.wbbasket.ru/vol109/part10948/10948760/images/big/1.webp", 
                 category: "Освещение", 
+                subcategory: "Светодиодные лампы",
                 price: "239", 
                 features: ["Модель Лампы: Энергосберегающая лампа - LH11-U/842/G23;", "Количество предметов в упаковке: 1 шт", "Гарантийный срок: 2 года", "Напряжение	220-240В/50Гц"] 
             },
@@ -541,6 +559,7 @@ function renderFilteredProducts(filteredProducts) {
                 name: "Прожектор светодиодный уличный 100 Вт", 
                 img: "https://basket-16.wbbasket.ru/vol2542/part254226/254226622/images/big/3.webp", 
                 category: "Освещение", 
+                subcategory: "Прожекторы и уличное освещение",
                 price: "500", 
                 features: ["Мощность: 100 Вт", "Степень пылевлагозащиты: IP65", "Питание: от сети", "Напряжение	220-240В/50Гц", "Гарантийный срок: 2 года"]
             },
@@ -549,6 +568,7 @@ function renderFilteredProducts(filteredProducts) {
                 name: "Светодиодная лента 20 метров RGB led многоцветная", 
                 img: "https://basket-04.wbbasket.ru/vol572/part57208/57208733/images/big/1.webp", 
                 category: "Освещение", 
+                subcategory: "Светодиодные ленты",
                 price: "500", 
                 features: ["Артикул	57208733", "Степень пылевлагозащиты:	IP 60", "Питание	12V; 220V; 24V", "Количество ламп	360 шт.", "Длина (м) 20 м", "Страна производства	Китай", "Комплектация	1 блок питания; 1 светодиодная лента; 1 пульт управления; 1 блок управления"]
             },
@@ -557,6 +577,7 @@ function renderFilteredProducts(filteredProducts) {
                 name: "Лампа настольная светильник ИКЕА TERTIAL настенная", 
                 img: "https://basket-16.wbbasket.ru/vol2437/part243783/243783981/images/big/1.webp", 
                 category: "Освещение", 
+                subcategory: "Настольные и декоративные лампы",
                 price: "2460", 
                 features: ["Артикул	243783981", "Степень пылевлагозащиты:	IP 60", "Питание	12V; 220V; 24V", "Количество ламп	360 шт.", "Длина (м) 20 м", "Страна производства	Китай", "Комплектация	1 блок питания; 1 светодиодная лента; 1 пульт управления; 1 блок управления"]
             },
@@ -565,6 +586,7 @@ function renderFilteredProducts(filteredProducts) {
                 name: "Лампа настольная солевая - лечебная ночник 2-3 кг", 
                 img: "https://basket-16.wbbasket.ru/vol2592/part259212/259212780/images/big/1.webp", 
                 category: "Освещение", 
+                subcategory: "Настольные и декоративные лампы",
                 price: "886", 
                 features: ["Гарантийный срок 12 месяцев; 1 год", "Питание	12V; 220V; 24V", "Напряжение	220-240В/50Гц", "Количество ламп	360 шт.", "Длина (м) 20 м", "Страна производства	Китай", "Комплектация	1 блок питания; 1 светодиодная лента; 1 пульт управления; 1 блок управления"]
 
@@ -576,6 +598,7 @@ function renderFilteredProducts(filteredProducts) {
                 name: "Смеситель для душа", 
                 img: "img/img_S/smesitel-dusha.png", 
                 category: "Сантехника", 
+                subcategory: "Душевые аксессуары",
                 price: "1200", 
                 features: [
                     "Артикул: 100455888", 
@@ -589,6 +612,7 @@ function renderFilteredProducts(filteredProducts) {
                 name: "Лейка для душа", 
                 img: "img/img_S/leyka-dlya-dusha.png", 
                 category: "Сантехника", 
+                subcategory: "Душевые аксессуары",
                 price: "800", 
                 features: [
                     "Артикул: 30012345", 
@@ -602,6 +626,7 @@ function renderFilteredProducts(filteredProducts) {
                 name: "Раковина", 
                 img: "img/img_S/rakovina.png", 
                 category: "Сантехника", 
+                subcategory: "Раковины и умывальники",
                 price: "4500", 
                 features: [
                     "Артикул: 17001023", 
@@ -615,6 +640,7 @@ function renderFilteredProducts(filteredProducts) {
                 name: "Тропический душ", 
                 img: "img/img_S/tropicheskiy-dush.png", 
                 category: "Сантехника", 
+                subcategory: "Системы душа",
                 price: "5500", 
                 features: [
                     "Артикул: 50098765", 
@@ -628,6 +654,7 @@ function renderFilteredProducts(filteredProducts) {
                 name: "Шланг для душа", 
                 img: "img/img_S/shlang-dlya-dusha.png", 
                 category: "Сантехника", 
+                subcategory: "Душевые аксессуары",
                 price: "300", 
                 features: [
                     "Артикул: 98765432", 
@@ -643,6 +670,7 @@ function renderFilteredProducts(filteredProducts) {
                     name: "Электродрель", 
                     img: "img/img_El/elektrodrel.jpg", 
                     category: "Электрические инструменты", 
+                    subcategory: "Сверлильные и ударные инструменты",
                     price: "7500", 
                     features: [
                         "Артикул: 100001", 
@@ -656,7 +684,8 @@ function renderFilteredProducts(filteredProducts) {
                     id: 52,
                     name: "Лобзик электрический", 
                     img: "img/img_El/lobzik.webp", 
-                    category: "Электрические инструменты", 
+                    category: "Электрические инструменты",
+                    subcategory: "Режущие и шлифовальные инструменты", 
                     price: "4900", 
                     features: [
                         "Артикул: 100002", 
@@ -671,6 +700,7 @@ function renderFilteredProducts(filteredProducts) {
                     name: "Шлифмашина", 
                     img: "img/img_El/shlifmachina.png", 
                     category: "Электрические инструменты", 
+                    subcategory: "Режущие и шлифовальные инструменты",
                     price: "4700", 
                     features: [
                         "Артикул: 100003", 
@@ -684,7 +714,8 @@ function renderFilteredProducts(filteredProducts) {
                     id: 54,
                     name: "Перфоратор", 
                     img: "img/img_El/perforator.webp", 
-                    category: "Электрические инструменты", 
+                    category: "Электрические инструменты",
+                    subcategory: "Сверлильные и ударные инструменты", 
                     price: "9500", 
                     features: [
                         "Артикул: 100004", 
@@ -699,6 +730,7 @@ function renderFilteredProducts(filteredProducts) {
                     name: "Электрическая отвертка", 
                     img: "img/img_El/otvertka.jpg", 
                     category: "Электрические инструменты", 
+                    subcategory: "Отвертки и мелкие инструменты",
                     price: "1500", 
                     features: [
                         "Артикул: 100005", 
@@ -711,13 +743,15 @@ function renderFilteredProducts(filteredProducts) {
         ]
 
         const categoriesArray = [
-            { name: "Умный дом", id: "Умный дом" },
-            { name: "Наушники", id: "Наушники" },
-            { name: "Комплектующие для ПК", id: "Комплектующие для ПК" },
-            { name: "Освещение", id: "Освещение" },
-            { name: "Сантехника", id: "Сантехника" },
-            { name: "Электрические инструменты", id: "Электрические инструменты" }
+            { name: "Умный дом", id: "Умный дом", subcategories: ["Освещение", "Безопасность", "Автоматика", "Климат и комфорт", "Уборка и уход"] },
+            { name: "Наушники", id: "Наушники", subcategories: ["Беспроводные", "Проводные"] },
+            { name: "Комплектующие для ПК", id: "Комплектующие для ПК", subcategories: ["Видеокарты", "Процессоры", "Оперативная память (RAM)", "Охлаждение"] },
+            { name: "Освещение", id: "Освещение", subcategories: ["Светодиодные лампы", "Прожекторы и уличное освещение", "Светодиодные ленты", "Настольные и декоративные лампы"] },
+            { name: "Сантехника", id: "Сантехника", subcategories: ["Душевые аксессуары", "Системы душа", "Раковины и умывальники"] },
+            { name: "Электрические инструменты", id: "Электрические инструменты", subcategories: ["Сверлильные и ударные инструменты", "Режущие и шлифовальные инструменты", "Отвертки и мелкие инструменты"] }
         ];
+
+
 
         let cart = JSON.parse(localStorage.getItem('cart')) || [];
         if (!Array.isArray(cart)) cart = [];
@@ -731,10 +765,43 @@ function renderFilteredProducts(filteredProducts) {
 
         function generateCategories() {
             const categoriesContainer = document.getElementById('categories');
+            categoriesContainer.innerHTML = "";
+
             categoriesArray.forEach(category => {
                 let categoryDiv = document.createElement('div');
                 categoryDiv.innerText = category.name;
+                categoryDiv.classList.add("category-item");
+
+                // При клике на категорию выводим все товары этой категории
                 categoryDiv.onclick = () => toggleCategory(category.id);
+
+                // Если у категории есть подкатегории, добавляем выпадающий список
+                if (category.subcategories.length > 0) {
+                    let subcategoriesList = document.createElement("div");
+                    subcategoriesList.classList.add("subcategories-list");
+                    subcategoriesList.style.display = "none"; // По умолчанию скрыто
+
+                    category.subcategories.forEach(sub => {
+                        let subcategoryDiv = document.createElement("div");
+                        subcategoryDiv.innerText = sub;
+                        subcategoryDiv.classList.add("subcategory-item");
+
+                        // При клике на подкатегорию фильтруем товары
+                        subcategoryDiv.onclick = (event) => {
+                            event.stopPropagation(); // Чтобы не срабатывал клик на родительскую категорию
+                            renderProducts(category.id, sub);
+                        };
+
+                        subcategoriesList.appendChild(subcategoryDiv);
+                    });
+
+                    categoryDiv.appendChild(subcategoriesList);
+
+                    // Открытие/закрытие подкатегорий при наведении
+                    categoryDiv.onmouseover = () => subcategoriesList.style.display = "block";
+                    categoryDiv.onmouseleave = () => subcategoriesList.style.display = "none";
+                }
+
                 categoriesContainer.appendChild(categoryDiv);
             });
         }
@@ -756,67 +823,67 @@ function renderFilteredProducts(filteredProducts) {
     }
 }
 
-        function renderProducts(category) {
-        const productsContainer = document.getElementById("products");
-        productsContainer.innerHTML = "";
+        function renderProducts(category, subcategory = null) {
+            const productsContainer = document.getElementById("products");
+            productsContainer.innerHTML = "";
 
-        const filteredProducts = productsData.filter(product => product.category === category);
+            // Фильтруем товары по категории и подкатегории (если выбрана)
+            const filteredProducts = productsData.filter(product => 
+                product.category === category && (subcategory ? product.subcategory === subcategory : true)
+            );
 
-        filteredProducts.forEach(product => {
-            const card = document.createElement("div");
-            card.classList.add("card");
-            card.setAttribute("data-id", product.name);
+            filteredProducts.forEach(product => {
+                const card = document.createElement("div");
+                card.classList.add("card");
+                card.setAttribute("data-id", product.name);
 
-            // Картинка товара
-            const img = document.createElement("img");
-            img.src = product.img;
-            img.alt = product.name;
-            img.style.width = "100%";
-            img.style.borderRadius = "10px";
+                const img = document.createElement("img");
+                img.src = product.img;
+                img.alt = product.name;
+                img.style.width = "100%";
+                img.style.borderRadius = "10px";
 
-            // Название товара
-            const title = document.createElement("p");
-            title.textContent = product.name;
+                const title = document.createElement("p");
+                title.textContent = product.name;
 
-            // Цена
-            const price = document.createElement("p");
-            price.textContent = `Цена: ${product.price} руб.`;
+                const price = document.createElement("p");
+                price.textContent = `Цена: ${product.price} руб.`;
 
-            // Иконка избранного
-            const favoriteIcon = document.createElement("img");
-            favoriteIcon.classList.add("favorite-icon");
-            favoriteIcon.setAttribute("data-product-id", product.name);
-            favoriteIcon.src = isFavorite(product.name) ? "img/fav-active.png" : "img/fav.png";
-            favoriteIcon.onclick = function(event) {
-                event.stopPropagation();
-                toggleFavorite(product, this);
-            };
+                // Иконка избранного
+                const favoriteIcon = document.createElement("img");
+                favoriteIcon.classList.add("favorite-icon");
+                favoriteIcon.setAttribute("data-product-id", product.name);
+                favoriteIcon.src = isFavorite(product.name) ? "img/fav-active.png" : "img/fav.png";
+                favoriteIcon.onclick = function(event) {
+                    event.stopPropagation();
+                    toggleFavorite(product, this);
+                };
 
-            // Кнопка "Добавить в корзину"
-            const addToCartButton = document.createElement("button");
-            addToCartButton.textContent = cart.some(item => item.name === product.name) ? "Добавлено в корзину" : "Добавить в корзину";
-            addToCartButton.disabled = cart.some(item => item.name === product.name);
-            addToCartButton.onclick = (event) => {
-                event.stopPropagation();
-                addToCart(product, addToCartButton);
-            };
+                // Кнопка "Добавить в корзину"
+                const addToCartButton = document.createElement("button");
+                addToCartButton.textContent = cart.some(item => item.name === product.name) ? "Добавлено в корзину" : "Добавить в корзину";
+                addToCartButton.disabled = cart.some(item => item.name === product.name);
+                addToCartButton.onclick = (event) => {
+                    event.stopPropagation();
+                    addToCart(product, addToCartButton);
+                };
 
-            // Контейнер для кнопки корзины
-            const actionsContainer = document.createElement("div");
-            actionsContainer.classList.add("actions-container");
-            actionsContainer.appendChild(addToCartButton);
+                const actionsContainer = document.createElement("div");
+                actionsContainer.classList.add("actions-container");
+                actionsContainer.appendChild(addToCartButton);
 
-            // Добавление элементов в карточку
-            card.appendChild(favoriteIcon);
-            card.appendChild(img);
-            card.appendChild(title);
-            card.appendChild(price);
-            card.appendChild(actionsContainer);
-            card.onclick = () => openModal(product);
+                card.appendChild(favoriteIcon);
+                card.appendChild(img);
+                card.appendChild(title);
+                card.appendChild(price);
+                card.appendChild(actionsContainer);
+                card.onclick = () => openModal(product);
 
-            productsContainer.appendChild(card);
-        });
-    }
+                productsContainer.appendChild(card);
+            });
+        }
+
+
 
         // Функция проверки, есть ли товар в избранном
         function isFavorite(productName) {

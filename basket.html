@@ -46,6 +46,7 @@
                     <table class="cart-table">
                         <thead>
                             <tr>
+                                <th>Товар</th>
                                 <th>Название</th>
                                 <th>Цена</th>
                                 <th>Кол-во</th>
@@ -59,6 +60,7 @@
                 cart.forEach((item, index) => {
                     tableHTML += `
                         <tr data-index="${index}">
+                            <td><img src="${item.img}" alt="${item.name}" /></td>
                             <td>${item.name}</td>
                             <td>${item.price.toLocaleString()} ₽</td>
                             <td>
