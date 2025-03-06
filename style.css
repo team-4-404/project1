@@ -21,19 +21,19 @@
 
 /* 2. Хедер */
 header {
-  background: var(--primary);
-  color: white;
-  padding: 1.2rem 2rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border-bottom: 3px solid var(--accent);
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
+    background: var(--primary);
+    color: white;
+    padding: 1.2rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 3px solid var(--accent);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
 
 /* Всплывающее окно */
 .modal {
@@ -519,11 +519,11 @@ footer {
     min-height: 800px;
     padding: 20px;
     background-color: #ffffff; /* Легкий фон */
+    transition: background-color 0.5s ease;
 }
 
-
 .categories {
-    width: 280px;
+    width: 350px; /* Увеличена ширина */
     padding: 1.5rem;
     background-color: #14213D;
     color: white;
@@ -532,6 +532,8 @@ footer {
     margin: 20px;
     backdrop-filter: blur(8px);
     border: 1px solid rgba(255, 255, 255, 0.3);
+    transition: all 0.5s ease;
+    flex-shrink: 0; /* Запрет на изменение размера */
 }
 
 .categories h3 {
@@ -542,6 +544,7 @@ footer {
     border-bottom: 2px solid var(--accent);
     text-align: center;
     letter-spacing: -0.5px;
+    transition: color 0.3s ease;
 }
 
 .category-list {
@@ -554,21 +557,17 @@ footer {
     color: white;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+    transition: all 0.5s ease;
 }
 
 .categories div {
     padding: 12px;
     margin: 8px 0;
-
     background-color: #FCA311;
     border: none;
     border-radius: 12px;
     cursor: pointer;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
     display: flex;
     align-items: center;
     gap: 15px;
@@ -587,17 +586,29 @@ footer {
     width: 3px;
     background: var(--accent);
     transform: scaleY(0);
-    transition: transform 0.3s ease;
+    transform-origin: bottom;
+    transition: transform 0.5s ease, background 0.3s ease;
 }
 
 .categories div:hover {
     background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
     transform: translateX(8px);
     box-shadow: 0 5px 15px rgba(252, 163, 17, 0.15);
+    color: #0D1B2A;
 }
 
 .categories div:hover::before {
     transform: scaleY(1);
+    background: var(--accent);
+}
+
+.categories div:not(:hover) {
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.categories div:not(:hover)::before {
+    transform: scaleY(0);
+    transition: transform 0.5s ease, background 0.3s ease;
 }
 
 .categories div.active {
@@ -613,19 +624,21 @@ footer {
     width: 24px;
     height: 24px;
     fill: currentColor;
-    transition: fill 0.3s ease;
+    transition: fill 0.3s ease, transform 0.3s ease;
     border: 1px solid #ff8c007e;
     cursor: pointer;
     border-radius: 8px;
     text-align: left;
-    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-.categories div:hover {
-    transform: scale(1.05);
-    background-color: #ff8c00;
-    border: none;
-    color: #0D1B2A;
+.categories div:hover .category-icon {
+    transform: scale(1.1);
+    fill: #0D1B2A;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.categories div:not(:hover) .category-icon {
+    transition: fill 0.3s ease, transform 0.3s ease;
 }
 
 .content {
@@ -918,6 +931,7 @@ button:hover {
     font-weight: bold;
 }
 
+
 /* избранное*/
 #favorites-container {
     display: flex;
@@ -929,8 +943,6 @@ button:hover {
 
 .favorite-item {
     border: 1px solid #ccc;
-
-=======
     padding: 10px;
     width: 250px;
     text-align: center;
