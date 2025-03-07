@@ -9,7 +9,7 @@
 <body>
     <header>
         <div class="logo">
-            <img src="img/logo.svg" alt="Логотип">
+            <a href="index.html"><img src="img/logo.svg" alt="Логотип"></a>
         </div>
 
         <div class="search-container">
@@ -982,6 +982,10 @@ function renderFilteredProducts(filteredProducts) {
         // Функция закрытия модального окна
         function closeModal() {
             document.getElementById('modal').style.display = 'none';
+        }
+
+        function closeeModal() {
+            document.getElementById('modal-links').style.display = 'none';
         }
 
         // Функция добавления в корзину
