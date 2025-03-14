@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>О нас - Магазин электроники 404</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <a href="index.html"><img src="img/logo.svg" alt="Логотип"></a>
+        </div>
+        <div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="main.html">Главная</a></li>
+                    <li><a href="about.html">О нас</a></li>
+                    <li><a href="index.html">Каталог</a></li>
+                    <li><a href="favorite.html">Избранное</a></li>
+                    <li><a href="basket.html">Корзина</a></li>
+                    <li><a href="">Контакты</a></li>
+                    <li><a href="login.html">Личный кабинет</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="burger-menu" onclick="toggleMenu()">☰</div>
+    </header>
+
+    <main>
+        <div class="info-about">
+            <!-- О нас -->
+            <section class="about-us">
+                <h1>О нас</h1>
+                <p>Магазин электроники 404 — это место, где вы найдёте всё необходимое для комфортной жизни в цифровую эпоху. Мы работаем с 2010 года и за это время заслужили доверие тысяч клиентов.</p>
+                <p>Наша миссия — сделать технологии доступными для каждого. Мы предлагаем только качественные товары от проверенных производителей.</p>
+            </section>
+
+            <!-- Контакты -->
+            <section class="contacts">
+                <h1>Контакты</h1>
+                <p>Мы находимся в Москве. Приезжайте к нам или свяжитесь с нами по телефону или email.</p>
+                <div class="contact-info">
+                    <p><strong>Адрес:</strong> г. Москва, ул. Тверская, д. 10, офис 404</p>
+                    <p><strong>Телефон:</strong> +7 (495) 123-45-67</p>
+                    <p><strong>Email:</strong> info@404electronics.ru</p>
+                </div>
+                
+            </section>
+        </div>
+        
+
+        <!-- Наша команда -->
+        <section class="team">
+            <h2>Наша команда</h2>
+            <div class="team-grid">
+                <div class="team-member">
+                    <img src="img/1.jpg" alt="Даша">
+                    <h3>Даша</h3>
+                    <p>Верстала корзину и избранное, сделала их функциональными</p>
+                </div>
+                
+                <div class="team-member">
+                    <img src="img/2.jpg" alt="Зайнап">
+                    <h3>Зайнап</h3>
+                    <p>Создавала каркас корзины и избранного</p>
+                </div>
+                
+                <div class="team-member">
+                    <img src="img/3.jpg" alt="Тамерлан">
+                    <h3>Тамерлан</h3>
+                    <p>Разрабатывал каркас корзины и избранного</p>
+                </div>
+                
+                <div class="team-member">
+                    <img src="img/4.jpg" alt="Саша">
+                    <h3>Саша</h3>
+                    <p>Отвечал за создание дизайна проекта</p>
+                </div>
+                
+                <div class="team-member">
+                    <img src="img/5.jpg" alt="Мара">
+                    <h3>Мара</h3>
+                    <p>Работала над дизайном проекта</p>
+                </div>
+                
+                <div class="team-member">
+                    <img src="img/6.jpg" alt="Гоша">
+                    <h3>Гоша</h3>
+                    <p>Координировал команду, контролировал задачи, помогал в разработке и объяснял ТЗ</p>
+                </div>
+                
+                <div class="team-member">
+                    <img src="img/7.jpg" alt="Софа">
+                    <h3>Софа</h3>
+                    <p>Управляла процессами, помогала команде и следила за выполнением задач</p>
+                </div>
+            </div>
+        </section>
+        
+        <div class="map">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2245.373789417037!2d37.60880831593084!3d55.75582698055313!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46b54a5a738fa419%3A0x7c347d506f52311!2sTverskaya%20St%2C%2010%2C%20Moskva%2C%20Russia%2C%20125009!5e0!3m2!1sen!2sus!4v1698765432100!5m2!1sen!2sus" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+        
+    </main>
+
+    <footer>
+        <div class="footer-column">
+            <h3>Контакты</h3>
+            <p>Email: info@404electronics.ru</p>
+            <p>Телефон: +7 (495) 123-45-67</p>
+        </div>
+        <div class="footer-column">
+            <h3>Адрес</h3>
+            <p>г. Москва, ул. Тверская, д. 10, офис 404</p>
+        </div>
+        <div class="footer-column">
+            <h3>Социальные сети</h3>
+            <p><a href="#">Instagram</a></p>
+            <p><a href="#">Telegram</a></p>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>
