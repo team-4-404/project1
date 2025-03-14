@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Главная - Магазин электроники 404</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <a href="index.html"><img src="img/logo.svg" alt="Логотип"></a>
+        </div>
+        <div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="main.html">Главная</a></li>
+                    <li><a href="about.html">О нас</a></li>
+                    <li><a href="index.html">Каталог</a></li>
+                    <li><a href="favorite.html">Избранное</a></li>
+                    <li><a href="basket.html">Корзина</a></li>
+                    <li><a href="">Контакты</a></li>
+                    <li><a href="login.html">Личный кабинет</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="burger-menu" onclick="toggleMenu()">☰</div>
+    </header>
+    <main>
+        <!-- Герой-секция -->
+        <section class="hero">
+            <h1>Добро пожаловать в магазин электроники 404!</h1>
+            <p>Мы предлагаем широкий ассортимент электроники по доступным ценам. От смартфонов до ноутбуков — у нас есть всё, что вам нужно.</p>
+            <a href="index.html" class="cta-button">Перейти в каталог</a>
+        </section>
+
+        <!-- Преимущества -->
+        <section>
+            <h2>Почему выбирают нас?</h2>
+            <div class="features">
+                <div class="feature">
+                    <img src="img/upselling.png" alt="Широкий ассортимент">
+                    <h3>Широкий ассортимент</h3>
+                    <p>У нас есть всё: от наушников до умных часов.</p>
+                </div>
+                <div class="feature">
+                    <img src="img/check.png" alt="Гарантия качества">
+                    <h3>Гарантия качества</h3>
+                    <p>Все товары сертифицированы и имеют гарантию.</p>
+                </div>
+                <div class="feature">
+                    <img src="img/truck.png" alt="Быстрая доставка">
+                    <h3>Быстрая доставка</h3>
+                    <p>Доставим ваш заказ в течение 1-2 дней.</p>
+                </div>
+            </div>
+            
+        </section>
+
+        <!-- Популярные товары -->
+        <section class="popular-products">
+            <h2>Популярные товары</h2>
+            <div class="product-grid">
+                <div class="product-card">
+                    <img src="img/img_UD/1.jpg" alt="Умная розетка">
+                    <h3>Умная розетка</h3>
+                    <p>Цена: 500 руб.</p>
+                </div>
+                <div class="product-card">
+                    <img src="img/img_N/1.jpg" alt="Наушники">
+                    <h3>Наушники Supreme Bass</h3>
+                    <p>Цена: 1200 руб.</p>
+                </div>
+                <div class="product-card">
+                    <img src="img/img_KDP/1.png" alt="Процессор">
+                    <h3>Процессор AMD Ryzen 5</h3>
+                    <p>Цена: 12157 руб.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-column">
+            <h3>Контакты</h3>
+            <p>Email: info@404electronics.ru</p>
+            <p>Телефон: +7 (495) 123-45-67</p>
+        </div>
+        <div class="footer-column">
+            <h3>Адрес</h3>
+            <p>г. Москва, ул. Тверская, д. 10, офис 404</p>
+        </div>
+        <div class="footer-column">
+            <h3>Социальные сети</h3>
+            <p><a href="#">Instagram</a></p>
+            <p><a href="#">Telegram</a></p>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>
