@@ -17,8 +17,8 @@
         <div>
             <nav>
                 <ul class="nav-links">
-                    <li><a href="" onclick="openLinksModal(); return false;">Главная</a></li>
-                    <li><a href="">О нас</a></li>
+                    <li><a href="main.html">Главная</a></li>
+                    <li><a href="about.html">О нас</a></li>
                     <li><a href="index.html">Каталог</a></li>
                     <li><a href="favorite.html">Избранное</a></li>
                     <li><a href="basket.html">Корзина</a></li>
@@ -31,56 +31,27 @@
     </header>
 
     <div class="container_acc">
-        <h2>Регистрация личного кабинета</h2>
-        <p class="welcome-text">Добро пожаловать впервые!</p>
-
-        <label for="registerName">Имя</label>
-        <input type="text" id="registerName" placeholder="Ваше имя" required>
-
-        <label for="registerSurname">Фамилия</label>
-        <input type="text" id="registerSurname" placeholder="Ваша фамилия" required>
-
-        <label for="registerEmail">Email</label>
-        <input type="email" id="registerEmail" placeholder="example@mail.com" required>
-
-        <label for="registerBirth">Дата рождения</label>
-        <input type="date" id="registerBirth" required>
-
-        <label for="registerPhone">Номер телефона</label>
-        <input type="tel" id="registerPhone" placeholder="+7 (___) ___-__-__" required>
-
-        <label for="registerPassword">Пароль</label>
-        <input type="password" id="registerPassword"  placeholder="********" required>
-
-        <button onclick="register()" class="secondary-button">Зарегистрироваться</button>
-        <a href="login.html" class="secondary-button">Войти</a>
+        <form action="register.php" method="POST">
+            <input type="text" id="registerName" name="name" placeholder="Ваше имя" required>
+            <input type="text" id="registerSurname" name="surname" placeholder="Ваша фамилия" required>
+            <input type="email" id="registerEmail" name="email" placeholder="example@mail.com" required>
+            <input type="date" id="registerBirth" name="birth" required>
+            <input type="tel" id="registerPhone" name="phone" placeholder="+7 (___) ___-__-__" required>
+            <input type="password" id="registerPassword" name="password" placeholder="********" required minlength="6">
+            
+            <div class="buttons">
+                <button type="submit" class="secondary-button">Зарегистрироваться</button>
+                <a href="login.html" class="two-button">Войти</a>
+            </div>
+        </form>
+    
+        
+    
+        <div class="alert" id="errorMessage"></div>
     </div>
 
     <script>
-        function register() {
-            const name = document.getElementById("registerName").value;
-            const surname = document.getElementById("registerSurname").value;
-            const email = document.getElementById("registerEmail").value;
-            const birth = document.getElementById("registerBirth").value;
-            const phone = document.getElementById("registerPhone").value;
-            const password = document.getElementById("registerPassword").value;
-
-            if (name && surname && email && birth && phone && password) {
-                const user = {
-                    name,
-                    surname,
-                    email,
-                    birth,
-                    phone,
-                    password
-                };
-                localStorage.setItem("user", JSON.stringify(user));
-                alert("Регистрация успешна! Теперь войдите.");
-                window.location.href = "login.html";
-            } else {
-                alert("Заполните все поля!");
-            }
-        }
+        
     </script>
 </body>
 </html>
