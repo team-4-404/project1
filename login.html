@@ -17,8 +17,8 @@
         <div>
             <nav>
                 <ul class="nav-links">
-                    <li><a href="" onclick="openLinksModal(); return false;">Главная</a></li>
-                    <li><a href="">О нас</a></li>
+                    <li><a href="main.html">Главная</a></li>
+                    <li><a href="about.html">О нас</a></li>
                     <li><a href="index.html">Каталог</a></li>
                     <li><a href="favorite.html">Избранное</a></li>
                     <li><a href="basket.html">Корзина</a></li>
@@ -31,36 +31,19 @@
     </header>
 
     <div class="container_acc">
-        <h2>Вход в личный кабинет</h2>
-        <p class="welcome-text">Добро пожаловать!</p>
-
-        <label for="loginEmail">Email</label>
-        <input type="email" id="loginEmail" placeholder="ggg@gmail.com" required>
-
-        
-        <label for="loginPassword">Пароль</label>
-        <input type="password" id="loginPassword" placeholder="*******************" required>
-
-        <div class="buttons">
-            <button onclick="login()" class="secondary-button">Войти</button>
-            <a href="register.html" class="secondary-button">Зарегистрироваться</a>
-        </div>
-        
+        <form action="login.php" method="POST">
+            <input type="email" id="loginEmail" name="email" placeholder="ggg@gmail.com" required>
+            <input type="password" id="loginPassword" name="password" placeholder="*******************" required>
+            
+            <div class="buttons">
+                <button type="submit" class="secondary-button">Войти</button>
+                <a href="register.html" class="two-button">Зарегистрироваться</a>
+            </div>
+        </form>
     </div>
 
     <script>
-        function login() {
-            const email = document.getElementById("loginEmail").value;
-            const password = document.getElementById("loginPassword").value;
-            const storedUser = JSON.parse(localStorage.getItem("user"));
-
-            if (storedUser && storedUser.email === email && storedUser.password === password) {
-                localStorage.setItem("loggedInUser", email);
-                window.location.href = "account.html";
-            } else {
-                alert("Неверные данные!");
-            }
-        }
+        
     </script>
 </body>
 </html>
