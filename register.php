@@ -1,16 +1,6 @@
 <?php
 // Подключение к базе данных
-$host = 'localhost'; // Хост
-$dbname = 'project_1'; // Имя базы данных
-$username = 'root'; // Имя пользователя базы данных
-$password = ''; // Пароль базы данных
-
-try {
-    $conn = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (PDOException $e) {
-    die("Ошибка подключения к базе данных: " . $e->getMessage());
-}
+require_once 'config.php';
 
 // Обработка данных формы
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -21,8 +11,45 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $phone = $_POST['phone'];
     $password = password_hash($_POST['password'], PASSWORD_DEFAULT); // Хэширование пароля
 
+    // 1. ВАЛИДАЦИЯ
+    if (empty($_POST['email']) || empty($_POST['password']) || empty($_POST['name']) || empty($_POST['surname']) || empty($_POST['birth']) || empty($_POST['phone'])) {
+        $error = 'Заполните все поля.';
+    } else {
+        // 2. ОЧИСТКА
+        $email = strip_tags(trim($_POST['email']), FILTER_SANITIZE_EMAIL);
+        $name = strip_tags(trim($_POST['name']), FILTER_SANITIZE_STRING);
+        $surname = strip_tags(trim($_POST['surname']), FILTER_SANITIZE_STRING);
+        $birth = strip_tags(trim($_POST['birth']), FILTER_SANITIZE_STRING);
+        $phone = strip_tags(trim($_POST['phone']), FILTER_SANITIZE_STRING);
+        $password = $_POST['password'];
+
+        // 3. ИЩЕМ пользователя в БД
+        $sql = "SELECT id, name, surname, birth, phone, password_hash FROM users WHERE email = :email";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([':email' => $email]);
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        // 4. ПРОВЕРЯЕМ пароль
+        if ($user && password_verify($password, $user['password_hash'])) {
+            // Пароль верный! Сохраняем данные в сессию
+            $_SESSION['user_id'] = $user['id'];
+            $_SESSION['user_name'] = $user['name'];
+            $_SESSION['user_surname'] = $user['surname'];
+            $_SESSION['user_birth'] = $user['birth'];
+            $_SESSION['user_phone'] = $user['phone'];
+            $_SESSION['user_email'] = $email;
+
+            // Перенаправляем в личный кабинет
+            header('Location: /account.php');
+            exit();
+        } else {
+            // Неправильный email или пароль
+            $error = 'Неверные email или пароль.';
+        }
+    }
+
     // Проверка, существует ли пользователь с таким email
-    $stmt = $conn->prepare("SELECT * FROM users WHERE email = :email");
+    $stmt = $pdo->prepare("SELECT * FROM users WHERE email = :email");
     $stmt->execute(['email' => $email]);
     $user = $stmt->fetch();
 

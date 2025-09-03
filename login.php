@@ -2,17 +2,7 @@
 session_start(); // Начинаем сессию
 
 // Подключение к базе данных
-$host = 'localhost';
-$dbname = 'project_1';
-$username = 'root';
-$password = '';
-
-try {
-    $conn = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (PDOException $e) {
-    die("Ошибка подключения к базе данных: " . $e->getMessage());
-}
+require_once 'config.php';
 
 // Обработка данных формы
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -20,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $password = $_POST['password'];
 
     // Поиск пользователя по email
-    $stmt = $conn->prepare("SELECT * FROM users WHERE email = :email");
+    $stmt = $pdo->prepare("SELECT * FROM users WHERE email = :email");
     $stmt->execute(['email' => $email]);
     $user = $stmt->fetch();
 
