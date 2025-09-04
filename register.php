@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         die($error);
     } else {
         // 2. ОЧИСТКА
-        $email = strip_tags(trim($_POST['email']), FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        $email = strip_tags(trim($_POST['email']), FILTER_SANITIZE_EMAIL);
         $name = strip_tags(trim($_POST['name']), FILTER_SANITIZE_FULL_SPECIAL_CHARS);
         $surname = strip_tags(trim($_POST['surname']), FILTER_SANITIZE_FULL_SPECIAL_CHARS);
         $birth = strip_tags(trim($_POST['birth']), FILTER_SANITIZE_FULL_SPECIAL_CHARS);
