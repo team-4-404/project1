@@ -16,11 +16,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $error = 'Заполните все поля.';
     } else {
         // 2. ОЧИСТКА
-        $email = strip_tags(trim($_POST['email']), FILTER_SANITIZE_EMAIL);
-        $name = strip_tags(trim($_POST['name']), FILTER_SANITIZE_STRING);
-        $surname = strip_tags(trim($_POST['surname']), FILTER_SANITIZE_STRING);
-        $birth = strip_tags(trim($_POST['birth']), FILTER_SANITIZE_STRING);
-        $phone = strip_tags(trim($_POST['phone']), FILTER_SANITIZE_STRING);
+        $email = strip_tags(trim($_POST['email']), FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        $name = strip_tags(trim($_POST['name']), FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        $surname = strip_tags(trim($_POST['surname']), FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        $birth = strip_tags(trim($_POST['birth']), FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        $phone = strip_tags(trim($_POST['phone']), FILTER_SANITIZE_FULL_SPECIAL_CHARS);
         $password = $_POST['password'];
 
         // 3. ИЩЕМ пользователя в БД
