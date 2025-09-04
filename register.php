@@ -14,6 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // 1. ВАЛИДАЦИЯ
     if (empty($_POST['email']) || empty($_POST['password']) || empty($_POST['name']) || empty($_POST['surname']) || empty($_POST['birth']) || empty($_POST['phone'])) {
         $error = 'Заполните все поля.';
+        die($error);
     } else {
         // 2. ОЧИСТКА
         $email = strip_tags(trim($_POST['email']), FILTER_SANITIZE_FULL_SPECIAL_CHARS);
@@ -23,6 +24,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $phone = strip_tags(trim($_POST['phone']), FILTER_SANITIZE_FULL_SPECIAL_CHARS);
         $password = $_POST['password'];
 
+        // 2.1. Проверка email
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $error = 'Неверный email.';
+            die($error);
+        }
+        
         // 3. ИЩЕМ пользователя в БД
         $sql = "SELECT id, name, surname, birth, phone, password_hash FROM users WHERE email = :email";
         $stmt = $pdo->prepare($sql);
@@ -45,6 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         } else {
             // Неправильный email или пароль
             $error = 'Неверные email или пароль.';
+            die($error);
         }
     }
 
